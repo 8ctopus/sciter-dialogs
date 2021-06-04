@@ -1,0 +1,114 @@
+<html window-frame="solid">
+<head>
+<style src="css/dialogs.css" />
+<script>
+
+// get parameters
+const params = Window.this.parameters;
+
+/*
+console.log(params.type);
+console.log(params.message);
+console.log(params.buttons);
+*/
+
+if (typeof params == "undefined" ||
+    typeof params.type == "undefined" ||
+    typeof params.message == "undefined" ||
+    typeof params.buttons == "undefined"
+) {
+    console.error("dialogs - missing parameters");
+}
+
+document.on("ready", function() {
+    let title;
+    let icon;
+
+    switch (params.type) {
+        case "info":
+            title = "Information";
+            icon  = "fas fa-info-circle";
+            break;
+
+        case "error":
+            title = "Error";
+            icon  = "fas fa-times-circle";
+            break;
+
+        case "warning":
+            title = "Warning";
+            icon  = "fas fa-exclamation-circle";
+            break;
+
+        case "question":
+            title = "Question";
+            icon  = "fas fa-question-circle";
+            break;
+    }
+
+    // set icon
+    document.$("header > i").classList.add(icon);
+    document.$("header > i").setAttribute("id", params.type);
+
+    // set title
+    document.$("header > span").innerHTML = title;
+
+    // set message
+    document.$("p#message").innerHTML = params.message;
+
+    // add buttons
+    addButtons(params.buttons);
+});
+
+/**
+ * Add buttons
+ * @param string buttons separated by space
+ * @return void
+ */
+function addButtons(buttons)
+{
+    const list = buttons.split(" ");
+
+    let buttons2 = list.map(function(str) {
+        const caption = capitalizeFirstLetter(str);
+
+        // JSX button
+        return (
+            <button id={str}>{caption}</button>
+        );
+    });
+
+    // add buttons to footer
+    document.$("footer").patch(buttons2);
+}
+
+/**
+ * Capitalize first letter
+ * @param string str
+ * @return string
+ */
+function capitalizeFirstLetter(str)
+{
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// button click event
+document.on("click", "button", function(event, button) {
+    // close window and return button id
+    Window.this.close(button.id);
+});
+
+</script>
+</head>
+<body>
+    <header roLe="window-caption">
+        <i class="" />
+        <span />
+        <button #close />
+    </header>
+    <main>
+        <p #message />
+    </main>
+    <footer />
+</body>
+</html>

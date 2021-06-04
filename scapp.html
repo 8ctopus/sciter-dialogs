@@ -1,0 +1,77 @@
+<html
+    window-resizable="true"
+    window-width="600dip"
+    window-height="400dip"
+>
+<head>
+<title>sciter dialogs demo</title>
+<style>
+
+body {
+    border-spacing: 1em;
+}
+
+plaintext#logger {
+    height: *;
+}
+
+</style>
+<script src="js/logger.js" />
+<script>
+
+function showDialog(type, message, buttons)
+{
+    return Window.this.modal({
+        type: Window.POPUP_WINDOW,
+        url: __DIR__ + "dialog.htm",
+        state: Window.WINDOW_SHOWN,
+        alignment: 5,
+//        width: 400,
+//        height: 170,
+        parameters: {
+            type: type,
+            message: message,
+            buttons: buttons,
+        }
+    });
+}
+
+// set dialog buttons on click event
+document.on("click", "button", function(event, element) {
+    let value;
+
+    switch (element.id) {
+        case "info":
+            value = showDialog("info", "Widget update successful.", "ok");
+            break;
+
+        case "error":
+            value = showDialog("error", "Widget failed with error 18.", "ok");
+            break;
+
+        case "warning":
+            value = showDialog("warning", "Widget could not be updated.", "ok");
+            break;
+
+        case "question":
+            value = showDialog("question", "Do you want to update widget?", "yes no cancel");
+            break;
+
+        default:
+            console.error("unknown element");
+            break;
+    }
+
+    console.log("return value: " + value);
+});
+
+</script>
+</head>
+<body>
+    <button #info>info</button>
+    <button #error>error</button>
+    <button #warning>warning</button>
+    <button #question>question</button>
+    <plaintext #logger />
+</body>
+</html>
