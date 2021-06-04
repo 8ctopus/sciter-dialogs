@@ -1,6 +1,8 @@
 # sciter dialogs
 
-This project implements modal dialogs for [sciter.js](https://sciter.com/) .
+This project implements modal dialogs for [sciter.js](https://sciter.com/).
+
+![sciter dialogs screenshot](screenshot.png)
 
 ## features
 
