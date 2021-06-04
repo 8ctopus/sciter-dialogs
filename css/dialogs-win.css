@@ -59,9 +59,28 @@ header > window-button[role="window-close"]:hover {
 }
 
 main {
-    size: max-content;
+    flow: horizontal;
 
     padding: 5dip;
+}
+
+main > i {
+}
+
+i#info {
+    color: blue;
+}
+
+i#error {
+    color: red;
+}
+
+i#warning {
+    color: orange;
+}
+
+main > #message {
+    vertical-align: middle;
 }
 
 footer {

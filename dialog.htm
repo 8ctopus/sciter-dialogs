@@ -47,15 +47,19 @@ document.on("ready", function() {
             break;
     }
 
-    // set icon
+    // set icon in header
     document.$("header > i").classList.add(icon);
     document.$("header > i").setAttribute("id", params.type);
+
+    // set icon in main
+    document.$("main > i").classList.add(icon);
+    document.$("main > i").setAttribute("id", params.type);
 
     // set title
     document.$("header > span").innerHTML = title;
 
     // set message
-    document.$("p#message").innerHTML = params.message;
+    document.$("#message").innerHTML = params.message;
 
     // add buttons
     addButtons(params.buttons);
@@ -108,7 +112,8 @@ document.on("click", "button", function(event, button) {
         <window-button #close role="window-close" />
     </header>
     <main>
-        <p #message />
+        <i class="" />
+        <span #message />
     </main>
     <footer />
 </body>

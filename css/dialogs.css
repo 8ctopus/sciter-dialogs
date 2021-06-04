@@ -50,9 +50,22 @@ main {
     padding: 5dip;
 }
 
+main > i {
+    display: block;
+
+    margin-right: 10dip;
+
+    font-size: 30dip;
+}
+
+i#info {
+    color: blue;
+}
+
 footer {
     flow: horizontal;
 
+    margin-top: *;
     width: *;
     height: max-content;
 
