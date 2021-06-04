@@ -20,10 +20,10 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/) .
 - click `CTRL + SHIFT + left click` to inspect an element
 - note: the clock component forces the DOM to refresh every second, remove the component if you want to inspect in peace.
 
-# to add
+# todo
 - i18n
 - help button with hyperlink
-- 
+- add don't show again checkbox
 
 # known issues
 
