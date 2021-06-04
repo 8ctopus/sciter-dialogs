@@ -1,8 +1,8 @@
 @import url("fontawesome.css");
 
 html {
-    width: 400dip;
-    height: 140dip;
+    width: 362dip;
+    height: 120dip;
 }
 
 body {
@@ -11,6 +11,7 @@ body {
     size: *;
 
     border: 1dip solid gray;
+
     padding: 0;
 
     background: white;
@@ -22,39 +23,25 @@ header {
     width: *;
     height: max-content;
 
-    border-bottom: 1dip solid rgb(230,230,230);
-
     padding: 5dip;
 }
 
 header > i {
-    font-size: 30dip;
-}
-
-header > i#info {
-    color: blue;
-}
-
-header > i#error {
-    color: red;
+    display: none !important;
 }
 
 header > span {
     height: *;
 
-    padding-left: 5dip;
-
     vertical-align: middle;
-    font-size: 20dip;
+    font-size: 12dip;
 }
 
-header > button#close {
-    display: none;
+header > window-button#close {
+    display: inline;
 
     margin-left: *;
     margin-right: 0;
-
-    background: red;
 }
 
 main {
@@ -74,10 +61,10 @@ footer {
     border-spacing: 1em;
 }
 
-footer button:first-child {
+footer > button:first-child {
     margin-left: *;
 }
 
-footer button:last-child {
+footer > button:last-child {
     margin-right: *;
 }

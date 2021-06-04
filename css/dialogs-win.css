@@ -1,0 +1,88 @@
+@import url("fontawesome.css");
+
+html {
+}
+
+body {
+    border: 1dip solid rgb(112,112,112);
+
+    font-family: "Tahoma";
+    color: black;
+}
+
+header {
+    width: *;
+    height: max-content;
+
+    padding: 5dip;
+}
+
+header > i {
+}
+
+header > span {
+}
+
+// window button
+header > window-button {
+    behavior: clickable;
+
+    width: window-button-width;
+    height: 20dip;
+
+    border-radius: 0;
+
+    foreground-size: 11dip;
+    foreground-repeat: no-repeat;
+    foreground-position: 50% 50%;
+
+    stroke: currentcolor;
+    stroke: red;
+    stroke-width: 1dip;
+
+    transition: background-color linear 100ms;
+}
+
+header > window-button:hover {
+    background: rgba(0,0,0,0.25);
+}
+
+// close button
+header > window-button[role="window-close"] {
+    stroke-width: 1.44dip;
+    foreground-image: url(path: M0 0 L10 10 M10 0 L0 10);
+}
+
+header > window-button[role="window-close"]:hover {
+    background: rgb(232,17,35);
+    stroke: #fff;
+}
+
+main {
+    size: max-content;
+
+    padding: 5dip;
+}
+
+footer {
+    border-spacing: 8dip;
+
+    padding: 10dip 14dip;
+    background: rgb(240,240,240);
+}
+
+footer > button {
+    width: 66dip;
+
+    border-radius: 0;
+    border: 1dip solid rgb(173,173,173);
+
+    text-align: center !important;
+}
+
+footer > button:first-child {
+}
+
+footer > button:last-child {
+    margin-right: 0;
+}
