@@ -7,6 +7,8 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ## features
 
 - modal dialog with icon
+- skinnable
+- translatable
 
 ## get started
 
