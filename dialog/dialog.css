@@ -1,14 +1,18 @@
 @import url("../css/fontawesome.css");
 
 html {
-    width: 362dip;
-    height: 120dip;
+    display: block;
+    flow: vertical;
+    overflow:hidden;
 }
 
 body {
     margin: 0;
-
     size: *;
+
+    overflow:none;
+
+    flow: vertical;
 
     border: 1dip solid gray;
 
@@ -20,58 +24,73 @@ body {
 }
 
 header {
+    display: block;
+    flow: horizontal;
+
     width: *;
     height: max-content;
-
-    padding: 5dip;
-}
-
-header > i {
-    display: none !important;
 }
 
 header > span {
     height: *;
+    width: *;
 
     vertical-align: middle;
     font-size: 12dip;
 }
 
 header > window-button#close {
-    display: inline;
+    display: inline-block;
 
     margin-left: *;
     margin-right: 0;
 }
 
 main {
-    size: max-content;
+    flow: horizontal;
 
-    padding: 5dip;
+    size: *;
+
+    margin: 0;
+
+    padding: 15dip 10dip;
 }
 
 main > i {
     display: block;
 
     margin-right: 10dip;
-
-    font-size: 30dip;
 }
 
 i#info {
     color: blue;
 }
 
+i#error {
+    color: red;
+}
+
+i#warning {
+    color: orange;
+}
+
 footer {
     flow: horizontal;
 
-    margin-top: *;
     width: *;
     height: max-content;
 
-    padding: 5dip;
+    padding: 10dip;
 
     border-spacing: 1em;
+}
+
+footer > button {
+    flow: vertical;
+
+    height: 2em;
+
+    text-align: center !important;
 }
 
 footer > button:first-child {
