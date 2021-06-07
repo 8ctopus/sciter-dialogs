@@ -1,8 +1,8 @@
-@import url("../vendor/8ctopus/sciter-fontawesome/src/css/fontawesome.css");
+@import url("fontawesome.css");
 
 html {
-    width: 362dip;
-    height: 120dip;
+    width: 400dip;
+    height: 140dip;
 }
 
 body {
@@ -11,7 +11,6 @@ body {
     size: *;
 
     border: 1dip solid gray;
-
     padding: 0;
 
     background: white;
@@ -23,25 +22,31 @@ header {
     width: *;
     height: max-content;
 
+    border-bottom: 1dip solid rgb(230,230,230);
+
     padding: 5dip;
 }
 
 header > i {
-    display: none !important;
+    font-size: 30dip;
 }
 
 header > span {
     height: *;
 
+    padding-left: 5dip;
+
     vertical-align: middle;
-    font-size: 12dip;
+    font-size: 20dip;
 }
 
-header > window-button#close {
-    display: inline;
+header > button#close {
+    display: none;
 
     margin-left: *;
     margin-right: 0;
+
+    background: red;
 }
 
 main {
@@ -50,22 +55,9 @@ main {
     padding: 5dip;
 }
 
-main > i {
-    display: block;
-
-    margin-right: 10dip;
-
-    font-size: 30dip;
-}
-
-i#info {
-    color: blue;
-}
-
 footer {
     flow: horizontal;
 
-    margin-top: *;
     width: *;
     height: max-content;
 
