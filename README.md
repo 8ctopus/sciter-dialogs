@@ -24,7 +24,20 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 - click `CTRL + SHIFT + left click` to inspect an element
 - note: the clock component forces the DOM to refresh every second, remove the component if you want to inspect in peace.
 
+# install
+
+- add the `src` dir to your project
+- then in your code
+
+```
+<script src="src/dialog.js" />
+<script>
+
+let value = showDialog("question", "Do you want to update widget?", "yes no cancel");
+```
+
 # todo
+
 - i18n
 - help button with hyperlink
 - add don't show again checkbox
