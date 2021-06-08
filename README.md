@@ -19,7 +19,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 - start `scapp.exe`
 - to refresh the app after changes to the html/css click `F5`
 
-# install
+## install
 
 - add the `src` dir to your project
 - then in your code
