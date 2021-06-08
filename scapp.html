@@ -21,9 +21,16 @@ plaintext#logger {
 
 import {showDialog} from "src/dialog.js";
 
-function dialogCallback()
+/**
+ * Dialog callback
+ * @param DOMElement root
+ * @return void
+ */
+function dialogCallback(root)
 {
     console.log("dialog callback reached");
+
+    root.$("header > span").innerHTML += " (i18n)";
 }
 
 // set dialog buttons on click event

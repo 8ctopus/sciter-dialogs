@@ -19,10 +19,6 @@ if (typeof params === "undefined" ||
 }
 
 document.on("ready", function() {
-    // call callback if set
-    if (params.callback !== null)
-        params.callback();
-
     let title;
     let icon;
 
@@ -67,6 +63,10 @@ document.on("ready", function() {
 
     // add buttons
     addButtons(params.buttons);
+
+    // call callback if set
+    if (params.callback !== null)
+        params.callback(document);
 });
 
 /**

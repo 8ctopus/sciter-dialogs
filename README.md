@@ -9,7 +9,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 - modal dialog with icon
 - skinnable
 - help button opens external link
-- translatable
+- translatable using callback
 
 ## demo
 
@@ -34,7 +34,6 @@ let value = showDialog("question", "Do you want to update widget?", "yes no canc
 
 # todo
 
-- i18n
 - add don't show again checkbox
 
 # known issues
