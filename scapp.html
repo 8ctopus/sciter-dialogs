@@ -21,25 +21,13 @@ plaintext#logger {
 
 import {showDialog} from "src/dialog.js";
 
-/**
- * Dialog callback
- * @param DOMElement root
- * @return void
- */
-function dialogCallback(root)
-{
-    console.log("dialog callback reached");
-
-    root.$("header > span").innerHTML += " (i18n)";
-}
-
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
     let value;
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", "Widget update successful.", "ok", dialogCallback);
+            value = showDialog("info", "Widget update successful.", "ok");
             break;
 
         case "error":
@@ -54,6 +42,10 @@ document.on("click", "button", function(event, element) {
             value = showDialog("question", "Do you want to update widget?", "yes no cancel");
             break;
 
+        case "callback":
+            value = showDialog("info", "Widget update successful.", "ok", dialogCallback);
+            break;
+
         default:
             console.error("unknown element");
             break;
@@ -62,6 +54,21 @@ document.on("click", "button", function(event, element) {
     console.log("return value: " + value);
 });
 
+/**
+ * Dialog callback
+ * @param DOMElement root
+ * @return void
+ */
+function dialogCallback(root)
+{
+    console.log("dialog callback reached");
+
+    // get all dialog elements to translate
+    root.$$("[data-i18n]").map(function(element) {
+        element.innerHTML += " (i18n)";
+    });
+}
+
 </script>
 </head>
 <body>
@@ -69,6 +76,7 @@ document.on("click", "button", function(event, element) {
     <button #error>error</button>
     <button #warning>warning</button>
     <button #question>question</button>
+    <button #callback>callback</button>
     <plaintext #logger />
 </body>
 </html>
