@@ -86,9 +86,10 @@ footer {
 footer > button {
     flow: vertical;
 
+    width: max-content;
     height: 2em;
 
-    text-align: center !important;
+    text-align: center;
 }
 
 footer > button:first-child {
