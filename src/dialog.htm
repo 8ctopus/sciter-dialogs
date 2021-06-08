@@ -79,26 +79,28 @@ function addButtons(buttons)
     const list = buttons.split(" ");
 
     let buttons2 = list.map(function(str) {
-        let caption = capitalizeFirstLetter(str);
+        let caption;
 
         if (str.startsWith("help") && str.indexOf("[") > 0) {
             caption = "Help";
 
-            const link = str.match(/\[(.*)\]/);
+            const link = str.match(/\[(.*)\]/); 
 
             // JSX button
             return (
                 <button #help data-i18n href={link[1]}>{caption}</button>
             );
         }
-        else {
-            caption = capitalizeFirstLetter(str);
 
-            // JSX button
-            return (
-                <button id={str} data-i18n>{caption}</button>
-            );
-        }
+        if (str === "ok")
+            caption = str.toUpperCase();
+        else 
+            caption = capitalizeFirstLetter(str); 
+
+        // JSX button
+        return (
+            <button id={str} data-i18n>{caption}</button>
+        );
     });
 
     // add buttons to footer
