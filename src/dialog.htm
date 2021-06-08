@@ -2,7 +2,9 @@
 <head>
 <style src="dialog.css" />
 <style src="dialog-win.css" />
-<script>
+<script type="module">
+
+import {launch} from "@env";
 
 // get parameters
 const params = Window.this.parameters;
@@ -72,12 +74,26 @@ function addButtons(buttons)
     const list = buttons.split(" ");
 
     let buttons2 = list.map(function(str) {
-        const caption = capitalizeFirstLetter(str);
+        let caption = capitalizeFirstLetter(str);
 
-        // JSX button
-        return (
-            <button id={str}>{caption}</button>
-        );
+        if (str.startsWith("help") && str.indexOf("[") > 0) {
+            caption = "Help";
+
+            const link = str.match(/\[(.*)\]/);
+
+            // JSX button
+            return (
+                <button #help href={link[1]}>{caption}</button>
+            );
+        }
+        else {
+            caption = capitalizeFirstLetter(str);
+
+            // JSX button
+            return (
+                <button id={str}>{caption}</button>
+            );
+        }
     });
 
     // add buttons to footer
@@ -96,8 +112,19 @@ function capitalizeFirstLetter(str)
 
 // button click event
 document.on("click", "button", function(event, button) {
-    // close window and return button id
-    Window.this.close(button.id);
+    switch (button.id) {
+        case "help":
+            const link = button.getAttribute("href");
+
+            if (link.length > 0)
+                launch(link);
+            break;
+
+        default:
+            // close window and return button id
+            Window.this.close(button.id);
+            break;
+    }
 });
 
 </script>
