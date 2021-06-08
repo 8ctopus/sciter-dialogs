@@ -19,6 +19,10 @@ if (typeof params === "undefined" ||
 }
 
 document.on("ready", function() {
+    // call callback if set
+    if (params.callback !== null)
+        params.callback();
+
     let title;
     let icon;
 

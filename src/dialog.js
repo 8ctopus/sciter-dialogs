@@ -3,9 +3,10 @@
  * @param  string type
  * @param  string message
  * @param  string buttons
+ * @param  function(optional) callback
  * @return string result
  */
-export function showDialog(type, message, buttons)
+export function showDialog(type, message, buttons, callback)
 {
     return Window.this.modal({
         type: Window.POPUP_WINDOW,
@@ -18,6 +19,7 @@ export function showDialog(type, message, buttons)
             type: type,
             message: message,
             buttons: buttons,
+            callback: callback ?? null,
         }
     });
 }

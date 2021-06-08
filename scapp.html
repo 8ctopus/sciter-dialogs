@@ -21,13 +21,18 @@ plaintext#logger {
 
 import {showDialog} from "src/dialog.js";
 
+function dialogCallback()
+{
+    console.log("dialog callback reached");
+}
+
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
     let value;
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", "Widget update successful.", "ok");
+            value = showDialog("info", "Widget update successful.", "ok", dialogCallback);
             break;
 
         case "error":
