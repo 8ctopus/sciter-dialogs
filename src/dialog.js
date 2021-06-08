@@ -5,7 +5,7 @@
  * @param  string buttons
  * @return string result
  */
-function showDialog(type, message, buttons)
+export function showDialog(type, message, buttons)
 {
     return Window.this.modal({
         type: Window.POPUP_WINDOW,

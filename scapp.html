@@ -17,8 +17,9 @@ plaintext#logger {
 
 </style>
 <script src="js/logger.js" />
-<script src="src/dialog.js" />
-<script>
+<script type="module">
+
+import {showDialog} from "src/dialog.js";
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
