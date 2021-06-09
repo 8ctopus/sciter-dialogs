@@ -86,7 +86,7 @@ footer > button:last-child {
     margin-right: 0;
 }
 
-html {      
+html {
     // button
     var(button-text): rgb(0, 0, 0);
 
@@ -94,7 +94,7 @@ html {
     var(button-border-width): 1dip;
     var(button-border-radius): 0;
     var(button-border-color): rgb(173,173,173);
-    
+
     var(button-hover-background): rgb(229,241,251);
     var(button-hover-border): rgb(0,120,215);
 
@@ -104,7 +104,9 @@ html {
     var(button-border-focus-width): 1dip;
     var(button-focus-border): rgb(0,120,215);
 
-    var(button-text-disabled): rgb(180,180,180);
+    var(button-disabled-background): rgb(238,238,238);
+    var(button-disabled-border): rgb(219,219,219);
+    var(button-disabled-text): rgb(179,179,179);
 }
 
 /* buttons */
@@ -132,18 +134,17 @@ html {
 }
 
 @mixin STD-BUTTON-DISABLED {
-    border-color: currentColor;
-
-    background: transparent;
-
-    color: color(button-text-disabled);
+    background: color(button-disabled-background);
+    color: color(button-disabled-text);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-disabled-border);
 }
-
 
 @set std-button < std-button-base
 {
     :root {
-
         border-width: length(button-border-width);
         border-radius: length(button-border-radius);
         border-style: solid;
@@ -151,7 +152,7 @@ html {
 
         line-height: height(100%);
         white-space: nowrap;
-        
+
         background: color(button-background);
 
         color: color(button-text);
@@ -170,6 +171,5 @@ html {
     :root:hover     { @STD-BUTTON-HOVER; }
     :root:active    { @STD-BUTTON-ACTIVE; }
     :root:disabled  { @STD-BUTTON-DISABLED; }
-    :root:focus     { @STD-BUTTON-NO-FOCUS; }
     :root:tab-focus { @STD-BUTTON-FOCUS; }
 }
