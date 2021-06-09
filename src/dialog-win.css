@@ -88,11 +88,11 @@ footer > button:last-child {
 
 html {      
     // button
+    var(button-text): rgb(0, 0, 0);
+
+    var(button-background): rgb(225,225,225);
     var(button-border-width): 1dip;
     var(button-border-radius): 0;
-    
-    var(button-text): rgb(0, 0, 0);  
-    var(button-background): rgb(225,225,225);
     var(button-border-color): rgb(173,173,173);
     
     var(button-hover-background): rgb(229,241,251);
@@ -101,12 +101,13 @@ html {
     var(button-active-background): rgb(204,228,247);
     var(button-active-border): rgb(0,84,153);
 
-    var(button-focus-color): rgba(49,132,253,50%);
+    var(button-border-focus-width): 1dip;
+    var(button-focus-border): rgb(0,120,215);
 
     var(button-text-disabled): rgb(180,180,180);
 }
 
-/* button */
+/* buttons */
 @mixin STD-BUTTON-HOVER {
     background: color(button-hover-background);
     border-width: length(button-border-width);
@@ -120,7 +121,14 @@ html {
     border-width: length(button-border-width);
     border-radius: length(button-border-radius);
     border-style: solid;
-    border-color: color(button-active-border) !important;
+    border-color: color(button-active-border);
+}
+
+@mixin STD-BUTTON-FOCUS {
+    border-width: length(button-border-focus-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-focus-border);
 }
 
 @mixin STD-BUTTON-DISABLED {
@@ -131,13 +139,6 @@ html {
     color: color(button-text-disabled);
 }
 
-@mixin STD-BUTTON-FOCUS {
-    outline: none;
-}
-
-@mixin STD-BUTTON-NO-FOCUS {
-    outline: none;
-}
 
 @set std-button < std-button-base
 {
