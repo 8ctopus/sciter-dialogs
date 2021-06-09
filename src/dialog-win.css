@@ -95,10 +95,15 @@ html {
     var(button-background): rgb(225,225,225);
     var(button-border-color): rgb(173,173,173);
     
-    var(button-text-disabled): rgb(180,180,180);
     var(button-hover-background): rgb(229,241,251);
     var(button-hover-border): rgb(0,120,215);
+
+    var(button-active-background): rgb(204,228,247);
+    var(button-active-border): rgb(0,84,153);
+
     var(button-focus-color): rgba(49,132,253,50%);
+
+    var(button-text-disabled): rgb(180,180,180);
 }
 
 /* button */
@@ -111,7 +116,11 @@ html {
 }
 
 @mixin STD-BUTTON-ACTIVE {
-    foreground: morph(white, opacity:30%);
+    background: color(button-active-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-active-border) !important;
 }
 
 @mixin STD-BUTTON-DISABLED {
@@ -149,12 +158,12 @@ html {
         vertical-align: middle;
 
         white-space: nowrap;
-  }
+    }
 
-:root.transparent {
-    background: transparent;
-    border-color: transparent;
-}
+    :root.transparent {
+        background: transparent;
+        border-color: transparent;
+    }
 
   // must come after classes in order to overwrite classes colors
     :root:hover     { @STD-BUTTON-HOVER; }
