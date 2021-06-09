@@ -92,9 +92,6 @@ function addButtons(buttons)
             );
         }
 
-        if (str === "ok")
-            caption = str.toUpperCase();
-
         if (str === "disabled") {
             caption = "Disabled";
 
@@ -102,6 +99,9 @@ function addButtons(buttons)
                 <button disabled id={str} data-i18n>{caption}</button>
             );
         }
+
+        if (str === "ok")
+            caption = str.toUpperCase();
 
         else 
             caption = capitalizeFirstLetter(str); 
