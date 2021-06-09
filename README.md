@@ -35,7 +35,9 @@ let value = showDialog("question", "Do you want to update widget?", "yes no canc
 # todo
 
 - add don't show again checkbox
+- set tab focus on first button
+- add keyboard shortcuts to buttons &#818;
 
 # known issues
 
-- no issues known
+- fix fontawesome css include
