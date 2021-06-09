@@ -99,3 +99,68 @@ footer > button:first-child {
 footer > button:last-child {
     margin-right: *;
 }
+
+/* buttons */
+@mixin STD-BUTTON-HOVER {
+    background: color(button-hover-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-hover-border);
+}
+
+@mixin STD-BUTTON-ACTIVE {
+    background: color(button-active-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-active-border);
+}
+
+@mixin STD-BUTTON-FOCUS {
+    border-width: length(button-border-focus-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-focus-border);
+}
+
+@mixin STD-BUTTON-DISABLED {
+    background: color(button-disabled-background);
+    color: color(button-disabled-text);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-disabled-border);
+}
+
+@set std-button < std-button-base
+{
+    :root {
+        border-width: length(button-border-width);
+        border-radius: length(button-border-radius);
+        border-style: solid;
+        border-color: color(button-border-color);
+
+        line-height: height(100%);
+        white-space: nowrap;
+
+        background: color(button-background);
+
+        color: color(button-text);
+        line-height: height(100%);
+        vertical-align: middle;
+
+        white-space: nowrap;
+    }
+
+    :root.transparent {
+        background: transparent;
+        border-color: transparent;
+    }
+
+  // must come after classes in order to overwrite classes colors
+    :root:hover     { @STD-BUTTON-HOVER; }
+    :root:active    { @STD-BUTTON-ACTIVE; }
+    :root:disabled  { @STD-BUTTON-DISABLED; }
+    :root:tab-focus { @STD-BUTTON-FOCUS; }
+}
