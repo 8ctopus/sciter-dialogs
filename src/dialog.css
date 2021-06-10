@@ -50,8 +50,6 @@ main {
     size: *;
 
     margin: 0;
-
-    padding: 15dip 10dip;
 }
 
 main > i {
@@ -77,8 +75,6 @@ footer {
 
     width: *;
     height: max-content;
-
-    padding: 10dip;
 
     border-spacing: 1em;
 }
@@ -118,7 +114,8 @@ footer > button:last-child {
 }
 
 @mixin STD-BUTTON-FOCUS {
-    border-width: length(button-border-focus-width);
+    background: color(button-focus-background);
+    border-width: length(button-border-width);
     border-radius: length(button-border-radius);
     border-style: solid;
     border-color: color(button-focus-border);
@@ -136,21 +133,19 @@ footer > button:last-child {
 @set std-button < std-button-base
 {
     :root {
-        border-width: length(button-border-width);
-        border-radius: length(button-border-radius);
-        border-style: solid;
-        border-color: color(button-border-color);
-
         line-height: height(100%);
         white-space: nowrap;
+
+        vertical-align: middle;
 
         background: color(button-background);
 
         color: color(button-text);
-        line-height: height(100%);
-        vertical-align: middle;
 
-        white-space: nowrap;
+        border-width: length(button-border-width);
+        border-radius: length(button-border-radius);
+        border-style: solid;
+        border-color: color(button-border-color);
     }
 
     :root.transparent {

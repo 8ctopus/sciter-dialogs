@@ -92,14 +92,6 @@ function addButtons(buttons)
             );
         }
 
-        if (str === "disabled") {
-            caption = "Disabled";
-
-            return (
-                <button disabled id={str} data-i18n>{caption}</button>
-            );
-        }
-
         if (str === "ok")
             caption = str.toUpperCase();
 
@@ -114,6 +106,12 @@ function addButtons(buttons)
 
     // add buttons to footer
     document.$("footer").patch(buttons2);
+
+    // set tab focus on the first button
+    document.$("footer > button").state.tabfocus = true;
+
+    // set focus on the first button
+    document.$("footer > button").state.focus = true;
 }
 
 /**
