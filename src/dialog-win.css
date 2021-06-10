@@ -59,6 +59,10 @@ header > window-button[role="window-close"]:hover {
     stroke: #fff;
 }
 
+main {
+    padding: 15dip 10dip;
+}
+
 main > i {
     font-size: 40dip;
 }
@@ -68,10 +72,12 @@ main > #message {
 }
 
 footer {
-    border-spacing: 8dip;
-
     border-top: 1px solid rgb(223,223,223);
-
+    
+    padding: 10dip;
+    
+    border-spacing: 8dip;
+    
     background: rgb(240,240,240);
 }
 
@@ -101,7 +107,6 @@ html {
     var(button-active-background): rgb(204,228,247);
     var(button-active-border): rgb(0,84,153);
 
-    var(button-border-focus-width): 1dip;
     var(button-focus-border): rgb(0,120,215);
 
     var(button-disabled-background): rgb(238,238,238);
