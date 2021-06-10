@@ -106,6 +106,12 @@ function addButtons(buttons)
 
     // add buttons to footer
     document.$("footer").patch(buttons2);
+
+    // set tab focus on the first button
+    document.$("footer > button").state.tabfocus = true;
+
+    // set focus on the first button
+    document.$("footer > button").state.focus = true;
 }
 
 /**
