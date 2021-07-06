@@ -72,7 +72,7 @@ document.on("ready", function() {
     addButtons(params.buttons);
 
     // call callback if set
-    if (typeof params.options !== "undefined" && typeof params.options.callback !== "undefined")
+    if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
         params.options.callback(document);
 });
 
