@@ -49,11 +49,11 @@ document.on("ready", function() {
     }
 
     // inject custom css
-    if (typeof params.css !== null) {
-        console.log(params.css);
-        console.log(typeof params.css);
+    if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
+//        console.log(params.css);
+//        console.log(typeof params.css);
 
-        let css = sys.cwd() + "\\" + params.css;
+        let css = sys.cwd() + "\\" + params.options.css;
         console.log(css);
         document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
     }
@@ -76,8 +76,8 @@ document.on("ready", function() {
     addButtons(params.buttons);
 
     // call callback if set
-    if (params.callback !== null)
-        params.callback(document);
+    if (typeof params.options !== "undefined" && typeof params.options.callback !== "undefined")
+        params.options.callback(document);
 });
 
 /**

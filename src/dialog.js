@@ -19,8 +19,6 @@ export function showDialog(type, message, buttons, options)
             type: type,
             message: message,
             buttons: buttons,
-            callback: options ? (options.callback ?? null) : null,
-            css: options ? (options.css ?? null) : null,
-        }
+            options: options,        }
     });
 }
