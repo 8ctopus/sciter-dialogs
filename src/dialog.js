@@ -19,6 +19,7 @@ export function showDialog(type, message, buttons, options)
             type: type,
             message: message,
             buttons: buttons,
-            options: options,        }
+            options: options,
+        }
     });
 }

@@ -50,11 +50,7 @@ document.on("ready", function() {
 
     // inject custom css
     if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
-//        console.log(params.css);
-//        console.log(typeof params.css);
-
         let css = sys.cwd() + "\\" + params.options.css;
-        console.log(css);
         document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
     }
 
