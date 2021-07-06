@@ -43,7 +43,11 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "callback":
-            value = showDialog("info", "Widget update successful.", "ok", dialogCallback);
+            value = showDialog("info", "Widget update successful.", "ok", {"callback": dialogCallback });
+            break;
+
+        case "css":
+            value = showDialog("info", "Widget update successful.", "ok", {"css": "test.css" });
             break;
 
         default:
@@ -77,6 +81,7 @@ function dialogCallback(root)
     <button #warning>warning</button>
     <button #question>question</button>
     <button #callback>callback</button>
+    <button #css>custom css</button>
     <plaintext #logger />
 </body>
 </html>

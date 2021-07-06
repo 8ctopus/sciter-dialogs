@@ -6,6 +6,7 @@
 <script type="module">
 
 import {launch} from "@env";
+import * as sys from "@sys";
 
 // get parameters
 const params = Window.this.parameters;
@@ -47,6 +48,16 @@ document.on("ready", function() {
             console.error(`dialog - unknown type - ${params.type}`);
     }
 
+    // inject custom css
+    if (typeof params.css !== null) {
+        console.log(params.css);
+        console.log(typeof params.css);
+
+        let css = sys.cwd() + "\\" + params.css;
+        console.log(css);
+        document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
+    }
+
     // set icon in header
     document.$("header > i").classList.add(icon);
     document.$("header > i").setAttribute("id", params.type);
@@ -84,7 +95,7 @@ function addButtons(buttons)
         if (str.startsWith("help") && str.indexOf("[") > 0) {
             caption = "Help";
 
-            const link = str.match(/\[(.*)\]/); 
+            const link = str.match(/\[(.*)\]/);
 
             // JSX button
             return (
@@ -95,8 +106,8 @@ function addButtons(buttons)
         if (str === "ok")
             caption = str.toUpperCase();
 
-        else 
-            caption = capitalizeFirstLetter(str); 
+        else
+            caption = capitalizeFirstLetter(str);
 
         // JSX button
         return (
