@@ -1,4 +1,4 @@
-export class dialog
+export class dialogs
 {
     /**
      * Show modal dialog
