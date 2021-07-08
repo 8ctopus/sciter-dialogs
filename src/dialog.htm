@@ -52,9 +52,8 @@ document.on("ready", function() {
         let css = sys.cwd() + "\\" + params.options.css;
         document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
     }
-
     else
-        document.head.insertAdjacentHTML('beforeend', `<style src="dialog-win.css" />`);
+        document.head.insertAdjacentHTML('beforeend', `<style src="dialog.css" />`);
 
     // set icon in header
     document.$("header > i").classList.add(icon);
