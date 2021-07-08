@@ -74,8 +74,6 @@ document.on("ready", function() {
             ]
         };
 
-        console.log(PLATFORM);
-
         // pick css for platform
         files = files[PLATFORM] || files["Windows"];
 
@@ -104,6 +102,12 @@ document.on("ready", function() {
     // call callback if set
     if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
         params.options.callback(document);
+
+    // center dialog in parent
+    center();
+
+    // show dialog
+    //Window.this.state = Window.WINDOW_SHOWN;
 });
 
 /**
@@ -159,6 +163,30 @@ function addButtons(buttons)
 function capitalizeFirstLetter(str)
 {
     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+/**
+ * Center dialog in parent window
+ * @return void
+ */
+function center()
+{
+    // get parent window dimensions
+    const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen")
+
+    //console.log(`${sx} ${sy} ${sw} ${sh}`)
+
+    // get this window dimensions with border
+    const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
+
+    //console.log(`${wx} ${wy} ${ww} ${wh}`)
+
+    // calculate position
+    const left = sx + (sw - ww) / 2;
+    const top  = sy + (sh - wh) / 2;
+
+    // move window
+    Window.this.move(left, top, ww, wh);
 }
 
 // button click event

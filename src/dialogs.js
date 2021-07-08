@@ -26,12 +26,13 @@ export class dialogs
             options = this.#options;
 
         return Window.this.modal({
+            parent: Window.this,
             type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialog.htm",
-            state: Window.WINDOW_SHOWN,
+            //state: Window.WINDOW_SHOWN,
             alignment: 5,
-    //        width: 400,
-    //        height: 170,
+            //width: 400,
+            //height: 170,
             parameters: {
                 type: type,
                 message: message,
