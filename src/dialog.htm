@@ -181,7 +181,7 @@ function center()
 
     //console.log(`${wx} ${wy} ${ww} ${wh}`)
 
-    // calculate position
+    // calculate parent window center
     const left = sx + (sw - ww) / 2;
     const top  = sy + (sh - wh) / 2;
 
@@ -200,7 +200,7 @@ document.on("click", "button", function(event, button) {
             break;
 
         default:
-            // close window and return button id
+            // close modal window and return button id
             Window.this.close(button.id);
             break;
     }
