@@ -1,6 +1,6 @@
 <html
     window-resizable="true"
-    window-width="600dip"
+    window-width="700dip"
     window-height="400dip"
 >
 <head>
@@ -43,7 +43,7 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "callback":
-            value = dialogs.show("info", "Widget update successful.", "ok", {"callback": dialogCallback });
+            value = dialogs.show("info", "Widget update successful.", "ok", {callback: dialogCallback });
             break;
 
         case "css":
@@ -51,13 +51,29 @@ document.on("click", "button", function(event, element) {
                 css: [
                     "src\\dialog.css",
                     "src\\dialog-win.css",
-                    "css\\test.css"
+                    "css\\test.css",
                 ]
 
                 //css: "css\\test.css"
             };
 
             value = dialogs.show("info", "Widget update successful.", "ok", options);
+            break;
+
+        case "options":
+            // options that apply to all dialogs
+            dialogs.setOptions({
+                callback: dialogCallback,
+                css: [
+                    "src\\dialog.css",
+                    "src\\dialog-win.css",
+                    "css\\test.css",
+                ]
+            });
+            break;
+
+        case "reset":
+            dialogs.setOptions({});
             break;
 
         default:
@@ -92,6 +108,8 @@ function dialogCallback(root)
     <button #question>question</button>
     <button #callback>callback</button>
     <button #css>custom css</button>
+    <button #options>options for all</button>
+    <button #reset>options for none</button>
     <plaintext #logger />
 </body>
 </html>
