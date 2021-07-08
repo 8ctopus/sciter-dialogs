@@ -47,7 +47,17 @@ document.on("click", "button", function(event, element) {
             break;
 
         case "css":
-            value = showDialog("info", "Widget update successful.", "ok", {"css": "css\\test.css" });
+            let options = {
+                css: [
+                    "src\\dialog.css",
+                    "src\\dialog-win.css",
+                    "css\\test.css"
+                ]
+
+                //css: "css\\test.css"
+            };
+
+            value = showDialog("info", "Widget update successful.", "ok", options);
             break;
 
         default:

@@ -47,13 +47,31 @@ document.on("ready", function() {
             console.error(`dialog - unknown type - ${params.type}`);
     }
 
-    // inject custom css
     if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
-        let css = sys.cwd() + "\\" + params.options.css;
-        document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
+        // inject custom css
+        let files = [];
+
+        if (typeof params.options.css === "string")
+            files[0] = params.options.css;
+        else
+            files = params.options.css;
+
+        files.forEach(function(file) {
+            file = sys.cwd() + "\\" + file;
+            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        });
     }
-    else
-        document.head.insertAdjacentHTML('beforeend', `<style src="dialog.css" />`);
+    else {
+        // inject default css
+        let files = [
+            "dialog.css",
+            "dialog-win.css"
+        ];
+
+        files.forEach(function(file) {
+            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        });
+    }
 
     // set icon in header
     document.$("header > i").classList.add(icon);
