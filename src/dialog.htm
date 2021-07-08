@@ -4,7 +4,7 @@
 
 <script type="module">
 
-import {launch} from "@env";
+import {launch, PLATFORM} from "@env";
 import * as sys from "@sys";
 
 // get parameters
@@ -63,10 +63,21 @@ document.on("ready", function() {
     }
     else {
         // inject default css
-        let files = [
-            "dialog.css",
-            "dialog-win.css"
-        ];
+        let files = {
+            Windows: [
+                "dialog.css",
+                "dialog-win.css",
+            ],
+            OSX: [
+                "dialog.css",
+                "dialog-osx.css",
+            ]
+        };
+
+        console.log(PLATFORM);
+
+        // pick css for platform
+        files = files[PLATFORM] || files["Windows"];
 
         files.forEach(function(file) {
             document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
