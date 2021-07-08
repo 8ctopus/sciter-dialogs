@@ -19,7 +19,7 @@ plaintext#logger {
 <script src="js/logger.js" />
 <script type="module">
 
-import {showDialog} from "src/dialog.js";
+import {dialog} from "src/dialog.js";
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
@@ -27,23 +27,23 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            value = showDialog("info", "Widget update successful.", "ok");
+            value = dialog.show("info", "Widget update successful.", "ok");
             break;
 
         case "error":
-            value = showDialog("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
+            value = dialog.show("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
-            value = showDialog("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok");
+            value = dialog.show("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok");
             break;
 
         case "question":
-            value = showDialog("question", "Do you want to update widget?", "yes no cancel");
+            value = dialog.show("question", "Do you want to update widget?", "yes no cancel");
             break;
 
         case "callback":
-            value = showDialog("info", "Widget update successful.", "ok", {"callback": dialogCallback });
+            value = dialog.show("info", "Widget update successful.", "ok", {"callback": dialogCallback });
             break;
 
         case "css":
@@ -57,7 +57,7 @@ document.on("click", "button", function(event, element) {
                 //css: "css\\test.css"
             };
 
-            value = showDialog("info", "Widget update successful.", "ok", options);
+            value = dialog.show("info", "Widget update successful.", "ok", options);
             break;
 
         default:
