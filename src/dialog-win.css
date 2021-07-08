@@ -1,3 +1,5 @@
+@import url(dialog.css);
+
 html {
     width: 400dip;
     height: 200dip;
@@ -73,11 +75,11 @@ main > #message {
 
 footer {
     border-top: 1px solid rgb(223,223,223);
-    
+
     padding: 10dip;
-    
+
     border-spacing: 8dip;
-    
+
     background: rgb(240,240,240);
 }
 
@@ -113,4 +115,3 @@ html {
     var(button-disabled-border): rgb(219,219,219);
     var(button-disabled-text): rgb(179,179,179);
 }
-
