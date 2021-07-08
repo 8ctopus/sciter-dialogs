@@ -103,6 +103,9 @@ document.on("ready", function() {
     if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
         params.options.callback(document);
 
+    // resize dialog according to css dimensions
+    resize();
+
     // center dialog in parent
     center();
 
@@ -187,6 +190,28 @@ function center()
 
     // move window
     Window.this.move(left, top);
+}
+
+/**
+ * Resize dialog
+ * @return void
+ * @note dialog does not take its dimensions from css for some reason, this fixes it
+ */
+function resize()
+{
+    // get width and height
+    let width  = document.style["width"];
+    let height = document.style["height"];
+
+    // extract number
+    width  = width.match(/\d+/)[0];
+    height = height.match(/\d+/)[0];
+
+    // get window left and top
+    const [wx, wy] = Window.this.box("rectw", "border", "screen");
+
+    // resize window
+    Window.this.move(wx, wy, width, height);
 }
 
 // button click event
