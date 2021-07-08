@@ -13,8 +13,8 @@ export function showDialog(type, message, buttons, options)
         url: __DIR__ + "dialog.htm",
         state: Window.WINDOW_SHOWN,
         alignment: 5,
-//        width: 400,
-//        height: 170,
+        width: 400,
+        height: 122,
         parameters: {
             type: type,
             message: message,
