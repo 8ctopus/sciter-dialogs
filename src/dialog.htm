@@ -1,8 +1,7 @@
 <html window-frame="solid">
 <head>
 <style src="../../sciter-fontawesome/src/css/fontawesome.css" />
-<style src="dialog.css" />
-<style src="dialog-win.css" />
+
 <script type="module">
 
 import {launch} from "@env";
@@ -53,6 +52,9 @@ document.on("ready", function() {
         let css = sys.cwd() + "\\" + params.options.css;
         document.head.insertAdjacentHTML('beforeend', `<style src="${css}" />`);
     }
+
+    else
+        document.head.insertAdjacentHTML('beforeend', `<style src="dialog.css" /> <style src="dialog-win.css" />`);
 
     // set icon in header
     document.$("header > i").classList.add(icon);
