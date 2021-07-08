@@ -16,7 +16,7 @@ export class dialogs
      * @param  string type
      * @param  string message
      * @param  string buttons
-     * @param (optional) object options
+     * @param  object (optional) options
      * @return string result
      */
     static show(type, message, buttons, options)
@@ -27,10 +27,10 @@ export class dialogs
 
         return Window.this.modal({
             parent: Window.this,
-            type: Window.POPUP_WINDOW,
+            //type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialog.htm",
             //state: Window.WINDOW_SHOWN,
-            alignment: 5,
+            //alignment: 5,
             //width: 400,
             //height: 170,
             parameters: {
