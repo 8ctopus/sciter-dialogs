@@ -27,9 +27,10 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ```
 <script type="module">
 
-import {showDialog} from "src/dialog.js";
+import {dialogs} from "src/dialogs.js";
 
-let value = showDialog("question", "Do you want to update widget?", "yes no cancel");
+let value = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
+
 ```
 
 # todo
