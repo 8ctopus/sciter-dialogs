@@ -29,7 +29,7 @@ document.on("ready", function() {
     const top  = (sh + 1 - wh) / 2;
 
     // move window
-    Window.this.move(left, top, ww, wh);
+    Window.this.move(left, top);
 
     // set focus
     document.body.state.focus = true;
