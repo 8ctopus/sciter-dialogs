@@ -1,17 +1,35 @@
 html {
+    display: block;
+    flow: vertical;
+    overflow: hidden;
+
     width: 400dip;
     height: 200dip;
 }
 
 body {
+    overflow: none;
+    flow: vertical;
+
+    size: *;
+    margin: 0;
+
     border: 1dip solid rgb(112,112,112);
 
-    font-family: "Tahoma";
-    color: black;
+    padding: 0;
+
+    background: white;
+    font-family: "Segoe UI";
+    font-size: 12dip !important;
+    color: black !important;
 }
 
 header {
+    display: block;
+    flow: horizontal;
+
     width: *;
+    height: max-content;
 
     padding-left: 10dip;
 }
@@ -21,6 +39,13 @@ header > i {
 }
 
 header > span {
+    height: *;
+    width: *;
+
+    padding-top: 5dip;
+
+    vertical-align: middle;
+    font-size: 12dip;
 }
 
 // window button
@@ -50,6 +75,11 @@ header > window-button:hover {
 
 // close button
 header > window-button[role="window-close"] {
+    display: inline-block;
+
+    margin-left: *;
+    margin-right: 0;
+
     stroke-width: 1.44dip;
     foreground-image: url(path: M0,0 L10,10 M0,10 L10,0);
 }
@@ -60,11 +90,31 @@ header > window-button[role="window-close"]:hover {
 }
 
 main {
+    flow: horizontal;
+
+    size: *;
+
+    margin: 0;
     padding: 15dip 10dip;
 }
 
 main > i {
-    font-size: 40dip;
+    display: block;
+
+    margin-right: 10dip;
+    font-size: 35dip;
+}
+
+i#info {
+    color: blue;
+}
+
+i#error {
+    color: red;
+}
+
+i#warning {
+    color: orange;
 }
 
 main > #message {
@@ -72,24 +122,100 @@ main > #message {
 }
 
 footer {
+    flow: horizontal;
+
+    width: *;
+    height: max-content;
+
     border-top: 1px solid rgb(223,223,223);
+    background: rgb(240,240,240);
 
     padding: 10dip;
 
-    border-spacing: 8dip;
-
-    background: rgb(240,240,240);
+    border-spacing: 15dip;
 }
 
 footer > button {
+    flow: vertical;
+
+    min-width: 55dip;
+    width: max-content;
+    height: 1.8em;
+
+    text-align: center;
     padding: 0 15dip;
 }
 
 footer > button:first-child {
+    margin-left: *;
 }
 
 footer > button:last-child {
     margin-right: 0;
+}
+
+/* buttons */
+@mixin STD-BUTTON-HOVER {
+    background: color(button-hover-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-hover-border);
+}
+
+@mixin STD-BUTTON-ACTIVE {
+    background: color(button-active-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-active-border);
+}
+
+@mixin STD-BUTTON-FOCUS {
+    background: color(button-focus-background);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-focus-border);
+}
+
+@mixin STD-BUTTON-DISABLED {
+    background: color(button-disabled-background);
+    color: color(button-disabled-text);
+    border-width: length(button-border-width);
+    border-radius: length(button-border-radius);
+    border-style: solid;
+    border-color: color(button-disabled-border);
+}
+
+@set std-button < std-button-base
+{
+    :root {
+        line-height: height(100%);
+        white-space: nowrap;
+
+        vertical-align: middle;
+
+        background: color(button-background);
+
+        color: color(button-text);
+
+        border-width: length(button-border-width);
+        border-radius: length(button-border-radius);
+        border-style: solid;
+        border-color: color(button-border-color);
+    }
+
+    :root.transparent {
+        background: transparent;
+        border-color: transparent;
+    }
+
+    // must come after classes in order to overwrite classes colors
+    :root:hover     { @STD-BUTTON-HOVER; }
+    :root:active    { @STD-BUTTON-ACTIVE; }
+    :root:disabled  { @STD-BUTTON-DISABLED; }
+    :root:tab-focus { @STD-BUTTON-FOCUS; }
 }
 
 html {
