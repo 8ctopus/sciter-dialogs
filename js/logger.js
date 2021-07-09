@@ -7,10 +7,13 @@
     // get console log method address
     const log = console.log;
 
+    const output = document.$("plaintext#logger");
+
     // replace original console log
     console.log = function(message) {
-        document.$("#logger").plaintext.appendLine(message);
         log.apply(console, arguments);
+        output.plaintext.appendLine(message);
+        output.lastElementChild.scrollIntoView({behavior:"smooth"});
     };
 
     // get console warn method address
@@ -18,8 +21,9 @@
 
     // replace original console log
     console.warn = function(message) {
-        document.$("#logger").plaintext.appendLine(message);
         warn.apply(console, arguments);
+        output.plaintext.appendLine(message);
+        output.lastElementChild.scrollIntoView({behavior:"smooth"});
     };
 
     // get console error method address
@@ -27,8 +31,9 @@
 
     // replace original console log
     console.error = function(message) {
-        document.$("#logger").plaintext.appendLine(message);
         error.apply(console, arguments);
+        output.plaintext.appendLine(message);
+        output.lastElementChild.scrollIntoView({behavior:"smooth"});
     };
 })();
 
