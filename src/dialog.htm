@@ -90,6 +90,7 @@ document.on("ready", function() {
 
     // set title
     document.$("header > span").innerHTML = title;
+    document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
 
     // set message
     document.$("#message").innerHTML = params.message;
@@ -130,7 +131,7 @@ function addButtons(buttons)
 
             // JSX button
             return (
-                <button #help data-i18n href={link[1]}>{caption}</button>
+                <button #help data-i18n="dialogs:help" href={link[1]}>{caption}</button>
             );
         }
 
@@ -140,9 +141,11 @@ function addButtons(buttons)
         else
             caption = capitalizeFirstLetter(str);
 
+        let i18n = `dialogs:${str}`;
+
         // JSX button
         return (
-            <button id={str} data-i18n>{caption}</button>
+            <button id={str} data-i18n={i18n}>{caption}</button>
         );
     });
 
