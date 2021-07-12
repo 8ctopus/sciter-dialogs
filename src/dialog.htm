@@ -173,14 +173,14 @@ function capitalizeFirstLetter(str)
 function center()
 {
     // get parent window dimensions
-    const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen")
+    const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
 
-    //console.log(`${sx} ${sy} ${sw} ${sh}`)
+    //console.log(`${sx} ${sy} ${sw} ${sh}`);
 
     // get this window dimensions with border
     const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
 
-    //console.log(`${wx} ${wy} ${ww} ${wh}`)
+    //console.log(`${wx} ${wy} ${ww} ${wh}`);
 
     // calculate parent window center
     const left = sx + (sw - ww) / 2;
