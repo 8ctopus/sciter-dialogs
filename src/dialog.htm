@@ -19,34 +19,6 @@ if (typeof params === "undefined" ||
 }
 
 document.on("ready", function() {
-    let title;
-    let icon;
-
-    switch (params.type) {
-        case "info":
-            title = "Information";
-            icon  = "fas fa-info-circle";
-            break;
-
-        case "error":
-            title = "Error";
-            icon  = "fas fa-times-circle";
-            break;
-
-        case "warning":
-            title = "Warning";
-            icon  = "fas fa-exclamation-circle";
-            break;
-
-        case "question":
-            title = "Question";
-            icon  = "fas fa-question-circle";
-            break;
-
-        default:
-            console.error(`dialog - unknown type - ${params.type}`);
-    }
-
     if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
         // inject custom css
         let files = [];
@@ -78,6 +50,34 @@ document.on("ready", function() {
         files.forEach(function(file) {
             document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
         });
+    }
+
+    let title;
+    let icon;
+
+    switch (params.type) {
+        case "info":
+            title = "Information";
+            icon  = "fas fa-info-circle";
+            break;
+
+        case "error":
+            title = "Error";
+            icon  = "fas fa-times-circle";
+            break;
+
+        case "warning":
+            title = "Warning";
+            icon  = "fas fa-exclamation-circle";
+            break;
+
+        case "question":
+            title = "Question";
+            icon  = "fas fa-question-circle";
+            break;
+
+        default:
+            console.error(`dialog - unknown type - ${params.type}`);
     }
 
     // set icon in header
