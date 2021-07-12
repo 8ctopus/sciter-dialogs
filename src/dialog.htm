@@ -82,11 +82,11 @@ document.on("ready", function() {
 
     // set icon in header
     document.$("header > i").classList.add(icon);
-    document.$("header > i").setAttribute("id", params.type);
+    document.$("header > i").id = params.type;
 
     // set icon in main
     document.$("main > i").classList.add(icon);
-    document.$("main > i").setAttribute("id", params.type);
+    document.$("main > i").id = params.type;
 
     // set title
     document.$("header > span").innerHTML = title;
