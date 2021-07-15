@@ -37,7 +37,6 @@ let value = dialogs.show("question", "Do you want to update widget?", "yes no ca
 # todo
 
 - add don't show again checkbox
-- set tab focus on first button
 - add keyboard shortcuts to buttons &#818;
 
 # known issues
