@@ -103,11 +103,8 @@ document.on("ready", function() {
         if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
             params.options.callback(document);
 
-        // resize dialog according to css dimensions
-        resize();
-
-        // center dialog in parent
-        center();
+        // position dialog in parent window
+        position();
     }
     catch (e) {
         console.error(`i18n exception - ${e.message} - ${e.stack}`);
@@ -176,36 +173,14 @@ function capitalizeFirstLetter(str)
 }
 
 /**
- * Center dialog in parent window
+ * Position dialog in parent window
  * @return void
  */
-function center()
+function position()
 {
     // get parent window dimensions
     const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
 
-    //console.log(`${sx} ${sy} ${sw} ${sh}`);
-
-    // get this window dimensions with border
-    const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
-
-    //console.log(`${wx} ${wy} ${ww} ${wh}`);
-
-    // calculate parent window center
-    const left = sx + (sw - ww) / 2;
-    const top  = sy + (sh - wh) / 2;
-
-    // move window
-    Window.this.move(left, top);
-}
-
-/**
- * Resize dialog
- * @return void
- * @note dialog does not take its dimensions from css for some reason, this fixes it
- */
-function resize()
-{
     // get width and height
     let width  = document.style["width"];
     let height = document.style["height"];
@@ -214,11 +189,12 @@ function resize()
     width  = width.match(/\d+/)[0];
     height = height.match(/\d+/)[0];
 
-    // get window left and top
-    const [wx, wy] = Window.this.box("rectw", "border", "screen");
+    // calculate parent window center
+    const left = sx + (sw - width) / 2;
+    const top  = sy + (sh - height) / 2;
 
-    // resize window
-    Window.this.move(wx, wy, width, height);
+    // move window
+    Window.this.move(left, top, width, height);
 }
 
 // button click event
