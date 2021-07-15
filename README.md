@@ -14,7 +14,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ## demo
 
 - git clone the repository
-- run `install.bat` to download the latest sciter binaries, library and the sciter package manager
+- run `install.bat` to download the latest sciter binaries and the sciter package manager
 - install packages `php spm.phar install`
 - update fontawesome path to `../vendor/8ctopus/sciter-fontawesome/src/css/fontawesome.css` in `dialog.htm`
 - run `scapp.bat`
@@ -25,7 +25,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 - add the `src` dir to your project
 - then in your code
 
-```
+```js
 <script type="module">
 
 import {dialogs} from "src/dialogs.js";
