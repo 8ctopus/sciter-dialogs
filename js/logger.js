@@ -13,7 +13,7 @@
     console.log = function(message) {
         log.apply(console, arguments);
         output.plaintext.appendLine(message);
-        output.lastElementChild.scrollIntoView({behavior:"smooth"});
+        output.lastElementChild.scrollIntoView({behavior: "smooth"});
     };
 
     // get console warn method address
@@ -23,7 +23,7 @@
     console.warn = function(message) {
         warn.apply(console, arguments);
         output.plaintext.appendLine(message);
-        output.lastElementChild.scrollIntoView({behavior:"smooth"});
+        output.lastElementChild.scrollIntoView({behavior: "smooth"});
     };
 
     // get console error method address
@@ -33,7 +33,7 @@
     console.error = function(message) {
         error.apply(console, arguments);
         output.plaintext.appendLine(message);
-        output.lastElementChild.scrollIntoView({behavior:"smooth"});
+        output.lastElementChild.scrollIntoView({behavior: "smooth"});
     };
 })();
 
