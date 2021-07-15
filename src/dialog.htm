@@ -7,19 +7,19 @@
 import {launch, PLATFORM} from "@env";
 import * as sys from "@sys";
 
-// get parameters
-const params = Window.this.parameters;
-
-if (typeof params === "undefined" ||
-    typeof params.type === "undefined" ||
-    typeof params.message === "undefined" ||
-    typeof params.buttons === "undefined"
-) {
-    console.error("dialog - missing parameters");
-}
-
 document.on("ready", function() {
     try {
+        // get parameters
+        const params = Window.this.parameters;
+
+        if (typeof params === "undefined" ||
+            typeof params.type === "undefined" ||
+            typeof params.message === "undefined" ||
+            typeof params.buttons === "undefined"
+        ) {
+            console.error("dialog - missing parameters");
+        }
+
         if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
             // inject custom css
             let files = [];
