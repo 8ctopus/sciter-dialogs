@@ -214,6 +214,41 @@ document.on("click", "button", function(event, button) {
     }
 });
 
+// escape key press
+document.on("keydown", function(event, button) {
+    if (event.code !== "KeyESCAPE")
+        return;
+
+    // get buttons
+    const buttons = document.$$("button");
+
+    // if there's a single button, return its id
+    if (buttons.length === 1) {
+        Window.this.close(buttons[0].id);
+        return;
+    }
+
+    // get button ids
+    const ids = buttons.map(function(button) {
+        return button.id;
+    })
+
+    if (ids.includes("cancel")) {
+        Window.this.close("cancel");
+        return;
+    }
+    else
+    if (ids.includes("no")) {
+        Window.this.close("no");
+        return;
+    }
+    else
+    if (ids.includes("ok")) {
+        Window.this.close("ok");
+        return;
+    }
+});
+
 </script>
 </head>
 <body>
