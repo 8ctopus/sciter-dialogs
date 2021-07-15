@@ -29,7 +29,7 @@ export class dialogs
             parent: Window.this,
             //type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialog.htm",
-            //state: Window.WINDOW_SHOWN,
+            state: Window.WINDOW_HIDDEN,
             //alignment: 5,
             //width: 400,
             //height: 170,

@@ -1,4 +1,4 @@
-<html window-frame="solid">
+<html window-frame="solid" window-state="hidden">
 <head>
 <style src="../../sciter-fontawesome/src/css/fontawesome.css" />
 
@@ -7,113 +7,115 @@
 import {launch, PLATFORM} from "@env";
 import * as sys from "@sys";
 
-document.on("ready", function() {
-    try {
-        // get parameters
-        const params = Window.this.parameters;
+try {
+    //console.log(Window.this.state); // hidden
 
-        if (typeof params === "undefined" ||
-            typeof params.type === "undefined" ||
-            typeof params.message === "undefined" ||
-            typeof params.buttons === "undefined"
-        ) {
-            console.error("dialog - missing parameters");
-        }
+    // get parameters
+    const params = Window.this.parameters;
 
-        if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
-            // inject custom css
-            let files = [];
-
-            if (typeof params.options.css === "string")
-                files[0] = params.options.css;
-            else
-                files = params.options.css;
-
-            files.forEach(function(file) {
-                file = sys.cwd() + "\\" + file;
-                document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
-            });
-        }
-        else {
-            // inject default css
-            let files = {
-                Windows: [
-                    "dialog-win.css",
-                ],
-                OSX: [
-                    "dialog-osx.css",
-                ]
-            };
-
-            // pick css for platform
-            files = files[PLATFORM] || files["Windows"];
-
-            files.forEach(function(file) {
-                document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
-            });
-        }
-
-        let title;
-        let icon;
-
-        switch (params.type) {
-            case "info":
-                title = "Information";
-                icon  = "fas fa-info-circle";
-                break;
-
-            case "error":
-                title = "Error";
-                icon  = "fas fa-times-circle";
-                break;
-
-            case "warning":
-                title = "Warning";
-                icon  = "fas fa-exclamation-circle";
-                break;
-
-            case "question":
-                title = "Question";
-                icon  = "fas fa-question-circle";
-                break;
-
-            default:
-                console.error(`dialog - unknown type - ${params.type}`);
-        }
-
-        // set icon in header
-        document.$("header > i").classList.add(icon);
-        document.$("header > i").id = params.type;
-
-        // set icon in main
-        document.$("main > i").classList.add(icon);
-        document.$("main > i").id = params.type;
-
-        // set title
-        document.$("header > span").innerHTML = title;
-        document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
-
-        // set message
-        document.$("#message").innerHTML = params.message;
-
-        // add buttons
-        addButtons(params.buttons);
-
-        // call callback if set
-        if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
-            params.options.callback(document);
-
-        // position dialog in parent window
-        position();
+    if (typeof params === "undefined" ||
+        typeof params.type === "undefined" ||
+        typeof params.message === "undefined" ||
+        typeof params.buttons === "undefined"
+    ) {
+        console.error("dialog - missing parameters");
     }
-    catch (e) {
-        console.error(`i18n exception - ${e.message} - ${e.stack}`);
+
+    if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
+        // inject custom css
+        let files = [];
+
+        if (typeof params.options.css === "string")
+            files[0] = params.options.css;
+        else
+            files = params.options.css;
+
+        files.forEach(function(file) {
+            file = sys.cwd() + "\\" + file;
+            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        });
     }
-    finally {
-        // show dialog
-        //Window.this.state = Window.WINDOW_SHOWN;
+    else {
+        // inject default css
+        let files = {
+            Windows: [
+                "dialog-win.css",
+            ],
+            OSX: [
+                "dialog-osx.css",
+            ]
+        };
+
+        // pick css for platform
+        files = files[PLATFORM] || files["Windows"];
+
+        files.forEach(function(file) {
+            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        });
     }
-});
+
+    let title;
+    let icon;
+
+    switch (params.type) {
+        case "info":
+            title = "Information";
+            icon  = "fas fa-info-circle";
+            break;
+
+        case "error":
+            title = "Error";
+            icon  = "fas fa-times-circle";
+            break;
+
+        case "warning":
+            title = "Warning";
+            icon  = "fas fa-exclamation-circle";
+            break;
+
+        case "question":
+            title = "Question";
+            icon  = "fas fa-question-circle";
+            break;
+
+        default:
+            console.error(`dialog - unknown type - ${params.type}`);
+    }
+
+    // set icon in header
+    document.$("header > i").classList.add(icon);
+    document.$("header > i").id = params.type;
+
+    // set icon in main
+    document.$("main > i").classList.add(icon);
+    document.$("main > i").id = params.type;
+
+    // set title
+    document.$("header > span").innerHTML = title;
+    document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
+
+    // set message
+    document.$("#message").innerHTML = params.message;
+
+    // add buttons
+    addButtons(params.buttons);
+
+    // call callback if set
+    if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
+        params.options.callback(document);
+
+    // position dialog in parent window
+    position();
+}
+catch (e) {
+    console.error(`i18n exception - ${e.message} - ${e.stack}`);
+}
+finally {
+    // show dialog
+    //console.log(Window.this.state); // hidden
+    Window.this.state = Window.WINDOW_SHOWN;
+}
+
 
 /**
  * Add buttons
