@@ -104,11 +104,11 @@ document.on("click", "button", function(event, element) {
             break;
 
         default:
-            console.error("unknown element");
+            console.error(`unknown element ${element.id}`);
             break;
     }
 
-    console.debug("return value: " + value);
+    console.debug(`return value: ${value}`);
 });
 
 /**
