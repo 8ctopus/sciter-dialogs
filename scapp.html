@@ -15,29 +15,19 @@ plaintext#logger {
     height: *;
 }
 
+@import url(vendor/8ctopus/sciter-logger/src/logger.css)
+
 </style>
-<style src="vendor/8ctopus/sciter-logger/src/logger.css" />
 <script type="module">
 
 import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
-import {addReloadWindow, centerWindow} from "js/utils.js";
+import {addReloadWindow, centerWindow} from "vendor/8ctopus/sciter-utils/src/utils.js";
+
 import {dialogs} from "src/dialogs.js";
 
-// initialize logger
-logger.init("", true);
-
-// attach logger to console
-logger.attach();
-
-// capture unhandled exceptions
-logger.capture();
-
 document.on("ready", function() {
-    // add support for F5 reload
-    addReloadWindow();
-
-    // center window on screen
-    centerWindow();
+    // initialize logger
+    logger.init("", false);
 
     // subscribe to logger messages
     logger.subscribe(function(level, message) {
@@ -48,6 +38,18 @@ document.on("ready", function() {
         // scroll to last item
         log.lastElementChild.scrollIntoView({behavior: "smooth"});
     });
+
+    // attach logger to console
+    logger.attach();
+
+    // capture unhandled exceptions
+    logger.capture();
+
+    // add support for F5 reload
+    addReloadWindow();
+
+    // center window on screen
+    centerWindow();
 });
 
 // set dialog buttons on click event
