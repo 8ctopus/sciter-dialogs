@@ -22,12 +22,10 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 ## install
 
-- add the `src` dir to your project
-- then in your code
+- add the `src` dir to your project or use the sciter package manager
+- in `<script type="module">`
 
 ```js
-<script type="module">
-
 import {dialogs} from "src/dialogs.js";
 
 let value = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
