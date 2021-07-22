@@ -16,11 +16,39 @@ plaintext#logger {
 }
 
 </style>
-<script src="js/logger.js" />
-<script src="js/utils.js" />
+<style src="vendor/8ctopus/sciter-logger/src/logger.css" />
 <script type="module">
 
+import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
+import {addReloadWindow, centerWindow} from "js/utils.js";
 import {dialogs} from "src/dialogs.js";
+
+// initialize logger
+logger.init("", true);
+
+// attach logger to console
+logger.attach();
+
+// capture unhandled exceptions
+logger.capture();
+
+document.on("ready", function() {
+    // add support for F5 reload
+    addReloadWindow();
+
+    // center window on screen
+    centerWindow();
+
+    // subscribe to logger messages
+    logger.subscribe(function(level, message) {
+        const log = document.$("plaintext#logger");
+
+        log.append(JSX(level, {}, [message]));
+
+        // scroll to last item
+        log.lastElementChild.scrollIntoView({behavior: "smooth"});
+    });
+});
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
@@ -80,7 +108,7 @@ document.on("click", "button", function(event, element) {
             break;
     }
 
-    console.log("return value: " + value);
+    console.debug("return value: " + value);
 });
 
 /**
@@ -90,7 +118,7 @@ document.on("click", "button", function(event, element) {
  */
 function dialogCallback(root)
 {
-    console.log("dialog callback reached");
+    console.debug("dialog callback reached");
 
     // get all dialog elements to translate
     root.$$("[data-i18n]").map(function(element) {

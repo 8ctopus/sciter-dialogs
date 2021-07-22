@@ -1,15 +1,25 @@
-"use strict";
+/**
+ * Add window reload with F5
+ * @return void
+ */
+export function addReloadWindow()
+{
+    // add scapp refresh
+    document.on("keydown", function(event, element) {
+        if (event.code !== "KeyF5")
+            return;
 
-// add scapp refresh
-document.on("keydown", function(event, element) {
-    if (event.code !== "KeyF5")
-        return;
+        // reload app
+        Window.this.load(location.href);
+    });
+}
 
-    // reload app
-    Window.this.load(location.href);
-});
-
-document.on("ready", function() {
+/**
+ * Center window on screen
+ * @return void
+ */
+export function centerWindow()
+{
     // bring window to front
     Window.this.isTopmost = true;
     Window.this.isTopmost = false;
@@ -33,4 +43,4 @@ document.on("ready", function() {
 
     // set focus
     document.body.state.focus = true;
-});
+}
