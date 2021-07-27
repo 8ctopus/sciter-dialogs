@@ -32,6 +32,38 @@ let value = dialogs.show("question", "Do you want to update widget?", "yes no ca
 
 ```
 
+### css skinning
+
+```js
+dialogs.setOptions({
+    css: [
+        __DIR__ + "src/dialog-win.css",
+        __DIR__ + "css/test.css",
+    ]
+});
+```
+
+### translation callback
+
+```js
+dialogs.setOptions({
+    callback: dialogCallback,
+});
+
+/**
+ * Dialog callback
+ * @param DOMElement root
+ * @return void
+ */
+function dialogCallback(root)
+{
+    // get all dialog elements to translate
+    root.$$("[data-i18n]").map(function(element) {
+        element.innerHTML += " (i18n)";
+    });
+}
+```
+
 # todo
 
 - add "don't show again" checkbox
