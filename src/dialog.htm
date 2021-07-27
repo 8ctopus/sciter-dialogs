@@ -5,7 +5,6 @@
 <script type="module">
 
 import {launch, PLATFORM} from "@env";
-import * as sys from "@sys";
 
 try {
     // document fully parsed and ready here
@@ -24,21 +23,20 @@ try {
 
     if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
         // inject custom css
-        let files = [];
+        let urls = [];
 
         if (typeof params.options.css === "string")
-            files[0] = params.options.css;
+            urls[0] = params.options.css;
         else
-            files = params.options.css;
+            urls = params.options.css;
 
-        files.forEach(function(file) {
-            file = sys.cwd() + "\\" + file;
-            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        urls.forEach(function(url) {
+            document.head.insertAdjacentHTML('beforeend', `<style src="${url}" />`);
         });
     }
     else {
         // inject default css
-        let files = {
+        let urls = {
             Windows: [
                 "dialog-win.css",
             ],
@@ -48,10 +46,10 @@ try {
         };
 
         // pick css for platform
-        files = files[PLATFORM] || files["Windows"];
+        urls = urls[PLATFORM] || urls["Windows"];
 
-        files.forEach(function(file) {
-            document.head.insertAdjacentHTML('beforeend', `<style src="${file}" />`);
+        urls.forEach(function(url) {
+            document.head.insertAdjacentHTML('beforeend', `<style src="${__DIR__ + url}" />`);
         });
     }
 

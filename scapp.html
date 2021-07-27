@@ -80,11 +80,9 @@ document.on("click", "button", function(event, element) {
         case "css":
             let options = {
                 css: [
-                    "src\\dialog-win.css",
-                    "css\\test.css",
-                ]
-
-                //css: "css\\test.css"
+                    __DIR__ + "src/dialog-win.css",
+                    __DIR__ + "css/test.css",
+                ],
             };
 
             value = dialogs.show("info", "Widget update successful.", "ok", options);
@@ -95,8 +93,8 @@ document.on("click", "button", function(event, element) {
             dialogs.setOptions({
                 callback: dialogCallback,
                 css: [
-                    "src\\dialog-win.css",
-                    "css\\test.css",
+                    __DIR__ + "src/dialog-win.css",
+                    __DIR__ + "css/test.css",
                 ]
             });
             break;
@@ -124,7 +122,7 @@ function dialogCallback(root)
 
     // get all dialog elements to translate
     root.$$("[data-i18n]").map(function(element) {
-        element.innerHTML += " (i18n)";
+        element.innerText += " (i18n)";
     });
 }
 
