@@ -21,7 +21,7 @@ plaintext#logger {
 <script type="module">
 
 import {logger} from "vendor/8ctopus/sciter-logger/src/logger.js";
-import {addReloadWindow, centerWindow} from "vendor/8ctopus/sciter-utils/src/utils.js";
+import * as utils from "vendor/8ctopus/sciter-utils/src/utils.js";
 
 import {dialogs} from "src/dialogs.js";
 
@@ -46,10 +46,16 @@ document.on("ready", function() {
     logger.capture();
 
     // add support for F5 reload
-    addReloadWindow();
+    utils.addReloadWindow();
 
     // center window on screen
-    centerWindow();
+    utils.centerWindow("screen");
+
+    // close window on escape key press
+    utils.closeWindowOnEscape();
+
+    // bring window to front
+    utils.windowToFront();
 });
 
 // set dialog buttons on click event
