@@ -7,6 +7,8 @@
 <title>sciter dialogs demo</title>
 <style>
 
+@import url(vendor/8ctopus/sciter-logger/src/logger.css);
+
 body {
     border-spacing: 1em;
 }
@@ -14,8 +16,6 @@ body {
 plaintext#logger {
     height: *;
 }
-
-@import url(vendor/8ctopus/sciter-logger/src/logger.css);
 
 </style>
 <script type="module">
@@ -56,6 +56,9 @@ document.on("ready", function() {
 
     // bring window to front
     utils.windowToFront();
+
+    // log sciter version
+    console.debug(utils.sciterInfo());
 });
 
 // set dialog buttons on click event
