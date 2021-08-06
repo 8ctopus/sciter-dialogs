@@ -237,16 +237,19 @@ document.on("keydown", function(event, button) {
 
     if (ids.includes("cancel")) {
         Window.this.close("cancel");
+        console.log("GUI - cancel");
         return;
     }
     else
     if (ids.includes("no")) {
         Window.this.close("no");
+        console.log("GUI - no");
         return;
     }
     else
     if (ids.includes("ok")) {
         Window.this.close("ok");
+        console.log("GUI - ok");
         return;
     }
 });
