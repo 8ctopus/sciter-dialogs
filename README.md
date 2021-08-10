@@ -7,8 +7,8 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ## features
 
 - modal dialog with icon
-- skinnable
-- help button opens external link
+- fully skinnable
+- any button can have open a link in the default browser
 - translatable using callback
 
 ## demo
