@@ -127,30 +127,19 @@ function addButtons(buttons)
     const list = buttons.split(" ");
 
     let buttons2 = list.map(function(str) {
-        let caption;
+        // get button id and link
+        let [full, id, link] = str.match(/([a-z]*)(?:\[(.*)\])?/);
 
-        if (str.startsWith("help") && str.indexOf("[") > 0) {
-            caption = "Help";
+        // make sure link is not undefined
+        link = link ?? "";
 
-            const link = str.match(/\[(.*)\]/);
+        const caption = (id === "ok") ? id.toUpperCase() : capitalizeFirstLetter(id);
 
-            // JSX button
-            return (
-                <button #help data-i18n="dialogs:help" href={link[1]}>{caption}</button>
-            );
-        }
+        const i18n = `dialogs:${id}`;
 
-        if (str === "ok")
-            caption = str.toUpperCase();
-
-        else
-            caption = capitalizeFirstLetter(str);
-
-        let i18n = `dialogs:${str}`;
-
-        // JSX button
+        // create button JSX
         return (
-            <button id={str} data-i18n={i18n}>{caption}</button>
+            <button id={id} href={link} data-i18n={i18n}>{caption}</button>
         );
     });
 
@@ -201,19 +190,17 @@ function position()
 
 // button click event
 document.on("click", "button", function(event, button) {
-    switch (button.id) {
-        case "help":
-            const link = button.getAttribute("href");
+    const link = button.getAttribute("href");
 
-            if (link.length > 0)
-                launch(link);
-            break;
+    if (link.length) {
+        // open link in browser
+        launch(link);
 
-        default:
-            // close modal window and return button id
-            Window.this.close(button.id);
-            break;
+        return;
     }
+
+    // close modal window and return button id
+    Window.this.close(button.id);
 });
 
 // escape key press
