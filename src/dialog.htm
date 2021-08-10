@@ -4,6 +4,7 @@
 <script type="module">
 
 import {launch, PLATFORM} from "@env";
+import * as utils from "../vendor/8ctopus/sciter-utils/src/utils.js";
 
 document.on("ready", function() {
     try {
@@ -175,13 +176,16 @@ function position()
     // get parent window dimensions
     const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
 
-    // get width and height
-    let width  = document.style["width"];
-    let height = document.style["height"];
+    //console.debug(document.style["width"] + " " + document.style["height"]);
 
-    // extract number
-    width  = width.match(/\d+/)[0];
-    height = height.match(/\d+/)[0];
+    // get device dpi setting
+    const dpi = utils.devicePixels();
+
+    // convert width and height in ppx
+    const width  = utils.dip_ppx(document.style["width"], dpi);
+    const height = utils.dip_ppx(document.style["height"], dpi);
+
+    //console.debug(`ppx ${width} x ${height}`);
 
     // calculate parent window center
     const left = sx + (sw - width) / 2;
