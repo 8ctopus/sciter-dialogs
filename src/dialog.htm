@@ -7,6 +7,9 @@ import {launch, PLATFORM} from "@env";
 
 document.on("ready", function() {
     try {
+        // get parent window console
+        console = Window.this.parent.document.globalThis.console;
+
         // document fully parsed and ready here
         //console.log(Window.this.state); // hidden
 
