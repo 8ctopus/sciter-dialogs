@@ -217,7 +217,7 @@ document.on("click", "button", function(event, button) {
 });
 
 // escape key press
-document.on("keydown", function(event, button) {
+document.on("keyup", function(event, button) {
     if (event.code !== "KeyESCAPE")
         return;
 
