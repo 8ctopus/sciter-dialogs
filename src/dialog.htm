@@ -111,7 +111,7 @@ document.on("ready", function() {
         position();
     }
     catch (e) {
-        console.error(`i18n exception - ${e.message} - ${e.stack}`);
+        console.error(`dialog - exception - ${e.message} - ${e.stack}`);
     }
     finally {
         // show dialog
@@ -201,15 +201,13 @@ document.on("click", "button", function(event, button) {
 
     if (link.length) {
         // open link in browser
+        console.log(`dialog - open link - ${link}`);
         launch(link);
-
-        console.log("GUI - open link - " + link);
-
         return;
     }
 
     // close modal window and return button id
-    console.log("GUI - click - " + button.id);
+    console.log(`dialog - click ${button.id}`);
     Window.this.close(button.id);
 });
 
@@ -223,8 +221,8 @@ document.on("keyup", function(event, button) {
 
     // if there's a single button, return its id
     if (buttons.length === 1) {
+        console.log(`dialog - key ${button.id}`);
         Window.this.close(buttons[0].id);
-        console.log("GUI - keydown - " + button.id);
         return;
     }
 
@@ -234,25 +232,25 @@ document.on("keyup", function(event, button) {
     })
 
     if (ids.includes("cancel")) {
-        console.log("GUI - keydown - cancel");
+        console.log(`dialog - key cancel`);
         Window.this.close("cancel");
         return;
     }
     else
     if (ids.includes("no")) {
-        console.log("GUI - keydown - no");
+        console.log(`dialog - key no`);
         Window.this.close("no");
         return;
     }
     else
     if (ids.includes("ok")) {
-        console.log("GUI - keydown - ok");
+        console.log(`dialog - key ok`);
         Window.this.close("ok");
         return;
     }
     else
     if (ids.includes("yes")) {
-        console.log("GUI - keydown - yes");
+        console.log(`dialog - key yes`);
         Window.this.close("yes");
         return;
     }
