@@ -203,10 +203,13 @@ document.on("click", "button", function(event, button) {
         // open link in browser
         launch(link);
 
+        console.log("GUI - open link - " + link);
+
         return;
     }
 
     // close modal window and return button id
+    console.log("GUI - click - " + button.id);
     Window.this.close(button.id);
 });
 
@@ -221,6 +224,7 @@ document.on("keyup", function(event, button) {
     // if there's a single button, return its id
     if (buttons.length === 1) {
         Window.this.close(buttons[0].id);
+        console.log("GUI - keydown - " + button.id);
         return;
     }
 
@@ -230,17 +234,26 @@ document.on("keyup", function(event, button) {
     })
 
     if (ids.includes("cancel")) {
+        console.log("GUI - keydown - cancel");
         Window.this.close("cancel");
         return;
     }
     else
     if (ids.includes("no")) {
+        console.log("GUI - keydown - no");
         Window.this.close("no");
         return;
     }
     else
     if (ids.includes("ok")) {
+        console.log("GUI - keydown - ok");
         Window.this.close("ok");
+        return;
+    }
+    else
+    if (ids.includes("yes")) {
+        console.log("GUI - keydown - yes");
+        Window.this.close("yes");
         return;
     }
 });
