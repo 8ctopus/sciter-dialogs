@@ -106,7 +106,7 @@ document.on("click", "button", function(event, element) {
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
                 ],
-                launch: dialogCallback,
+                openLink: openLinkOverride,
             });
             break;
 
@@ -119,7 +119,7 @@ document.on("click", "button", function(event, element) {
             break;
     }
 
-    if (result)
+    if (typeof result !== "undefined")
         console.log(`return value: ${result}`);
 });
 
@@ -136,6 +136,11 @@ function dialogCallback(root)
     root.$$("[data-i18n]").map(function(element) {
         element.innerText += " (i18n)";
     });
+}
+
+function openLinkOverride(link)
+{
+    console.log(`open link override ${link}`);
 }
 
 </script>

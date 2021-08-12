@@ -204,7 +204,12 @@ document.on("click", "button", function(event, button) {
         if (params.options && params.options.logging)
             console.log(`dialog - open link - ${link}`);
 
-        launch(link);
+        // open link can be overriden
+        if (params.options && typeof params.options.openLink === "function")
+            params.options.openLink(link);
+        else
+            launch(link);
+
         return;
     }
 
