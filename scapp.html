@@ -63,31 +63,33 @@ document.on("ready", function() {
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
+    let result;
+
     switch (element.id) {
         case "info":
-            dialogs.show("info", "Widget update successful.", "ok");
+            result = dialogs.show("info", "Widget update successful.", "ok");
             break;
 
         case "error":
-            dialogs.show("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
+            result = dialogs.show("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
-            dialogs.show("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok info[https://yandex.ru]");
+            result = dialogs.show("warning", "Widget could not be updated. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo ratione molestias optio dolorem blanditiis commodi maiores, libero expedita dolor quo, sequi ipsum iusto! Nostrum quas modi, saepe a aspernatur nemo.", "ok info[https://yandex.ru]");
             break;
 
         case "question":
-            dialogs.show("question", "Do you want to update widget?", "yes no cancel");
+            result = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
             break;
 
         case "callback":
-            dialogs.show("info", "The callback can be used to translate the dialog elements.", "ok", {
+            result = dialogs.show("info", "The callback can be used to translate the dialog elements.", "ok", {
                 callback: dialogCallback
             });
             break;
 
         case "css":
-            dialogs.show("info", "Widget update successful.", "ok", {
+            result = dialogs.show("info", "Widget update successful.", "ok", {
                 css: [
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
@@ -98,6 +100,7 @@ document.on("click", "button", function(event, element) {
         case "options":
             // options that apply to all dialogs
             dialogs.setOptions({
+                logging: true,
                 callback: dialogCallback,
                 css: [
                     __DIR__ + "src/dialog-win.css",
@@ -115,6 +118,9 @@ document.on("click", "button", function(event, element) {
             console.error(`unknown element ${element.id}`);
             break;
     }
+
+    if (result)
+        console.log(`return value: ${result}`);
 });
 
 /**

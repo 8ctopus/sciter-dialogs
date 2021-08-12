@@ -15,7 +15,7 @@ document.on("ready", function() {
         //console.log(Window.this.state); // hidden
 
         // get parameters
-        const params = Window.this.parameters;
+        globalThis.params = Window.this.parameters;
 
         if (typeof params === "undefined" ||
             typeof params.type === "undefined" ||
@@ -201,13 +201,17 @@ document.on("click", "button", function(event, button) {
 
     if (link.length) {
         // open link in browser
-        console.log(`dialog - open link - ${link}`);
+        if (params.options && params.options.logging)
+            console.log(`dialog - open link - ${link}`);
+
         launch(link);
         return;
     }
 
     // close modal window and return button id
-    console.log(`dialog - click ${button.id}`);
+    if (params.options && params.options.logging)
+        console.log(`dialog - click ${button.id}`);
+
     Window.this.close(button.id);
 });
 
@@ -216,13 +220,18 @@ document.on("keyup", function(event, button) {
     if (event.code !== "KeyESCAPE")
         return;
 
+    const logging = params.options && params.options.logging;
+
     // get buttons
     const buttons = document.$$("button");
 
     // if there's a single button, return its id
     if (buttons.length === 1) {
-        console.log(`dialog - key ${button.id}`);
         Window.this.close(buttons[0].id);
+
+        if (logging)
+            console.log(`dialog - key ${button.id}`);
+
         return;
     }
 
@@ -232,27 +241,31 @@ document.on("keyup", function(event, button) {
     })
 
     if (ids.includes("cancel")) {
-        console.log(`dialog - key cancel`);
         Window.this.close("cancel");
-        return;
+
+        if (logging)
+            console.log(`dialog - key cancel`);
     }
     else
     if (ids.includes("no")) {
-        console.log(`dialog - key no`);
         Window.this.close("no");
-        return;
+
+        if (logging)
+            console.log(`dialog - key no`);
     }
     else
     if (ids.includes("ok")) {
-        console.log(`dialog - key ok`);
         Window.this.close("ok");
-        return;
+
+        if (logging)
+            console.log(`dialog - key ok`);
     }
     else
     if (ids.includes("yes")) {
-        console.log(`dialog - key yes`);
         Window.this.close("yes");
-        return;
+
+        if (logging)
+            console.log(`dialog - key yes`);
     }
 });
 
