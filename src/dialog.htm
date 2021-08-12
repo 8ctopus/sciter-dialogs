@@ -94,11 +94,16 @@ document.on("ready", function() {
         document.$("main > i").id = params.type;
 
         // set title
-        document.$("header > span").innerHTML = title;
+        document.$("header > span").innerText = title;
         document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
 
         // set message
-        document.$("#message").innerHTML = params.message;
+        document.$("#message").innerText = params.message;
+
+        // log message
+        if (params.options && params.options.logging)
+            console.log(`dialog - "${params.message}"`);
+            //console.log(`dialog - "${params.message} - ${params.buttons}"`);
 
         // add buttons
         addButtons(params.buttons);
