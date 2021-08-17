@@ -1,24 +1,27 @@
 html {
-    display: block;
     flow: vertical;
-    overflow: hidden;
 
     width: 400dip;
+    min-height: 200dip;
     height: 200dip;
+
+    overflow: hidden;
 }
 
 body {
-    overflow: none;
     flow: vertical;
 
-    size: *;
     margin: 0;
+
+    size: *;
+    overflow: none;
 
     border: 1dip solid rgb(112,112,112);
 
     padding: 0;
 
     background: white;
+
     font-family: "Segoe UI";
     font-size: 12dip !important;
     color: black !important;
@@ -26,6 +29,7 @@ body {
 
 header {
     display: block;
+
     flow: horizontal;
 
     width: *;
@@ -39,8 +43,8 @@ header > i {
 }
 
 header > span {
-    height: *;
     width: *;
+    height: *;
 
     padding-top: 5dip;
 
@@ -92,9 +96,11 @@ header > window-button[role="window-close"]:hover {
 main {
     flow: horizontal;
 
-    size: *;
-
     margin: 0;
+
+    width: *;
+    height:  max-content;
+
     padding: 15dip 10dip;
 }
 
@@ -117,7 +123,9 @@ i#warning {
     color: orange;
 }
 
-main > #message {
+main > span#message {
+    display: block;
+
     vertical-align: top;
     white-space: pre-wrap;
 }
@@ -125,15 +133,16 @@ main > #message {
 footer {
     flow: horizontal;
 
+    margin-top: *;
+
     width: *;
     height: max-content;
 
+    padding: 10dip;
+    border-spacing: 15dip;
+
     border-top: 1px solid rgb(223,223,223);
     background: rgb(240,240,240);
-
-    padding: 10dip;
-
-    border-spacing: 15dip;
 }
 
 footer > button {
