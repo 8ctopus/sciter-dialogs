@@ -31,8 +31,10 @@ export class dialogs
             url: __DIR__ + "dialog.htm",
             state: Window.WINDOW_HIDDEN,
             //alignment: 5,
-            //width: 400,
-            //height: 170,
+            // temporary fix for 4.4.8.7 division by zero
+            // https://sciter.com/forums/topic/div-by-zero-on-window-creation/
+            width: 400,
+            height: 170,
             parameters: {
                 type: type,
                 message: message,
