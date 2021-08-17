@@ -25,34 +25,27 @@ import * as utils from "vendor/8ctopus/sciter-utils/src/utils.js";
 
 import {dialogs} from "src/dialogs.js";
 
+// initialize logger
+logger.init();
+
+// attach logger to console
+logger.attach();
+
+// capture unhandled exceptions
+logger.capture();
+
 document.on("ready", function() {
-    // initialize logger
-    logger.init("", false);
-
     // subscribe to logger messages
-    logger.subscribe(function(level, message) {
-        const log = document.$("plaintext#logger");
-
-        log.append(JSX(level, {}, [message]));
-
-        // scroll to last item
-        log.lastElementChild.scrollIntoView({behavior: "smooth"});
-    });
-
-    // attach logger to console
-    logger.attach();
-
-    // capture unhandled exceptions
-    logger.capture();
+    logger.plaintext(document.$("plaintext#logger"));
 
     // add support for F5 reload
     utils.addReloadWindow();
 
+    // close window on escape
+    utils.closeWindowOnEscape();
+
     // center window on screen
     utils.centerWindow("screen");
-
-    // close window on escape key press
-    utils.closeWindowOnEscape();
 
     // bring window to front
     utils.windowToFront();
