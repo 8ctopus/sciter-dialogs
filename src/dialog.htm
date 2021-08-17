@@ -147,7 +147,13 @@ function addButtons(buttons)
         const i18n = `dialogs:${id}`;
 
         // create button JSX
-        return (
+        if (id === "yes")
+            return (
+            <button id={id} href={link} .yes data-i18n={i18n}>{caption}</button>
+        );
+
+        else
+            return (
             <button id={id} href={link} data-i18n={i18n}>{caption}</button>
         );
     });
