@@ -8,7 +8,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 - modal dialog with icon
 - fully skinnable
-- any button can have open a link in the default browser
+- any button can open a link in the browser
 - translatable using callback
 
 ## demo
