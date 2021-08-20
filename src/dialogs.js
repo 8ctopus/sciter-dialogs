@@ -28,7 +28,7 @@ export class dialogs
         return Window.this.modal({
             parent: Window.this,
             //type: Window.POPUP_WINDOW,
-            url: __DIR__ + "dialog.htm",
+            url: __DIR__ + "dialog.html",
             state: Window.WINDOW_HIDDEN,
             //alignment: 5,
             // temporary fix for 4.4.8.7 division by zero
