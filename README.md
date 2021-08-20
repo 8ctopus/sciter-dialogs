@@ -69,4 +69,4 @@ function dialogCallback(root)
 
 # known issues
 
-- no known issues
+- make window show only when ready
