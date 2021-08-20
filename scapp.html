@@ -60,7 +60,9 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            result = dialogs.show("info", "Widget update successful.", "ok");
+            result = dialogs.show("info", "Widget update successful.", "ok", {
+                disable: element,
+            });
             break;
 
         case "error":

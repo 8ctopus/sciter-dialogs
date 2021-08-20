@@ -68,6 +68,9 @@ document.on("ready", function() {
             });
         }
 
+        if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
+            params.options.disable.disabled = true;
+
         let title;
         let icon;
 
@@ -292,6 +295,11 @@ document.on("keyup", function(event, button) {
         if (logging)
             console.log(`dialog - key yes`);
     }
+});
+
+document.on("close", function(a) {
+    if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
+        params.options.disable.disabled = false;
 });
 
 </script>
