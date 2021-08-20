@@ -201,20 +201,11 @@ function position()
 
     const min_height = utils.dip_ppx(document.style["min-height"], dpi);
 
-    // get height in ppx of the 3 main blocks
-    const height_header = document.$("header").state.box("height", "border", true);
-    const height_main   = document.$("main").state.box("height", "border", true);
-    const height_footer = document.$("footer").state.box("height", "border", true);
-
-    //console.debug(height_header + " " + height_main + " " + height_footer);
-
-    // calculate window required height
-    let height = height_header + height_main + height_footer + 2;
+    // get body height in ppx
+    let height = document.$("body").state.box("height", "border", true);
 
     // make sure height not less than min height
     height = (height < min_height) ? min_height : height;
-
-    //console.debug(`ppx ${width} x ${height}`);
 
     // calculate parent window center
     const left = sx + (sw - width) / 2;
