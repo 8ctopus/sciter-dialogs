@@ -15,6 +15,7 @@ body {
 
 body:disabled {
     filter: blur(1dip);
+    transition-duration: 400ms;
 }
 
 plaintext#logger {
@@ -97,6 +98,7 @@ document.on("click", "button", function(event, element) {
         case "options":
             // options that apply to all dialogs
             dialogs.setOptions({
+                debugging: true,
                 logging: true,
                 callback: dialogCallback,
                 css: [

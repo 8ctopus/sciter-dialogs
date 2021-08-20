@@ -24,6 +24,7 @@ document.on("ready", function() {
     try {
         // shown
         //console.debug(`after ready window state - ${Window.this.state}`);
+        const timer = new Date();
 
         // get parameters
         globalThis.params = Window.this.parameters;
@@ -115,12 +116,12 @@ document.on("ready", function() {
         // set message
         document.$("#message").innerText = params.message;
 
+        // add buttons
+        addButtons(params.buttons);
+
         // log message
         if (params.options && params.options.logging)
             console.log(`dialog - message - "${params.message}"`);
-
-        // add buttons
-        addButtons(params.buttons);
 
         // call callback if set
         if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
@@ -128,6 +129,9 @@ document.on("ready", function() {
 
         // position dialog in parent window
         position();
+
+        if (params.options && params.options.debugging)
+            console.debug(`total time ${new Date() - timer}ms`);
     }
     catch (e) {
         console.error(`dialog - exception - ${e.message} - ${e.stack}`);
