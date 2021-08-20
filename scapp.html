@@ -13,6 +13,10 @@ body {
     border-spacing: 1em;
 }
 
+body:disabled {
+    filter: blur(1dip);
+}
+
 plaintext#logger {
     height: *;
 }
@@ -60,9 +64,7 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            result = dialogs.show("info", "Widget update successful.", "ok", {
-                disable: element,
-            });
+            result = dialogs.show("info", "Widget update successful.", "ok");
             break;
 
         case "error":
@@ -101,6 +103,7 @@ document.on("click", "button", function(event, element) {
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
                 ],
+                disable: document.$("body"),
                 openLink: openLinkOverride,
             });
             break;
@@ -135,7 +138,7 @@ function dialogCallback(root)
 
 function openLinkOverride(link)
 {
-    console.log(`open link override ${link}`);
+    console.log(`open link override - ${link}`);
 }
 
 </script>
