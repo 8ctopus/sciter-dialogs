@@ -3,9 +3,28 @@ html {
 
     width: 400dip;
     min-height: 200dip;
-    height: 200dip;
 
     overflow: hidden;
+
+    // button
+    var(button-text): rgb(0, 0, 0);
+
+    var(button-background): rgb(225,225,225);
+    var(button-border-width): 1dip;
+    var(button-border-radius): 0;
+    var(button-border-color): rgb(173,173,173);
+
+    var(button-hover-background): rgb(229,241,251);
+    var(button-hover-border): rgb(0,120,215);
+
+    var(button-active-background): rgb(204,228,247);
+    var(button-active-border): rgb(0,84,153);
+
+    var(button-focus-border): rgb(0,120,215);
+
+    var(button-disabled-background): rgb(238,238,238);
+    var(button-disabled-border): rgb(219,219,219);
+    var(button-disabled-text): rgb(179,179,179);
 }
 
 body {
@@ -226,26 +245,4 @@ footer > button:last-child {
     :root:active    { @STD-BUTTON-ACTIVE; }
     :root:disabled  { @STD-BUTTON-DISABLED; }
     :root:tab-focus { @STD-BUTTON-FOCUS; }
-}
-
-html {
-    // button
-    var(button-text): rgb(0, 0, 0);
-
-    var(button-background): rgb(225,225,225);
-    var(button-border-width): 1dip;
-    var(button-border-radius): 0;
-    var(button-border-color): rgb(173,173,173);
-
-    var(button-hover-background): rgb(229,241,251);
-    var(button-hover-border): rgb(0,120,215);
-
-    var(button-active-background): rgb(204,228,247);
-    var(button-active-border): rgb(0,84,153);
-
-    var(button-focus-border): rgb(0,120,215);
-
-    var(button-disabled-background): rgb(238,238,238);
-    var(button-disabled-border): rgb(219,219,219);
-    var(button-disabled-text): rgb(179,179,179);
 }
