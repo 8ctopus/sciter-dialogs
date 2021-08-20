@@ -10,13 +10,20 @@
 import {launch, PLATFORM} from "@env";
 import * as utils from "../vendor/8ctopus/sciter-utils/src/utils.js";
 
+// get parent window console
+console = Window.this.parent.document.globalThis.console;
+
+//console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`);
+//console.debug(`Window.WINDOW_HIDDEN - ${Window.WINDOW_HIDDEN}`);
+//console.line();
+
+// hidden
+//console.debug(`before ready window state - ${Window.this.state}`);
+
 document.on("ready", function() {
     try {
-        // get parent window console
-        console = Window.this.parent.document.globalThis.console;
-
-        // document fully parsed and ready here
-        //console.log(Window.this.state); // hidden
+        // shown
+        //console.debug(`after ready window state - ${Window.this.state}`);
 
         // get parameters
         globalThis.params = Window.this.parameters;
