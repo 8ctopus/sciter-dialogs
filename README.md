@@ -27,8 +27,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ```js
 import {dialogs} from "src/dialogs.js";
 
-let value = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
-
+const value = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
 ```
 
 ### css skinning
@@ -70,4 +69,4 @@ function dialogCallback(root)
 
 # known issues
 
-- fix fontawesome css include
+- no known issues
