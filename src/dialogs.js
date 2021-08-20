@@ -21,9 +21,11 @@ export class dialogs
      */
     static show(type, message, buttons, options)
     {
-        // set options if not defined
-        if (typeof options === "undefined")
-            options = this.#options;
+        // merge options
+        options = {
+            ...this.#options,
+            ...options,
+        };
 
         return Window.this.modal({
             parent: Window.this,

@@ -68,6 +68,7 @@ document.on("ready", function() {
             });
         }
 
+        // disable button so it cannot be clicked again while the dialog is shown
         if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
             params.options.disable.disabled = true;
 
@@ -236,11 +237,7 @@ document.on("click", "button", function(event, button) {
         return;
     }
 
-    // close modal window and return button id
-    if (params.options && params.options.logging)
-        console.log(`dialog - click ${button.id}`);
-
-    Window.this.close(button.id);
+    close(button.id, false);
 });
 
 // escape key press
@@ -255,11 +252,7 @@ document.on("keyup", function(event, button) {
 
     // if there's a single button, return its id
     if (buttons.length === 1) {
-        Window.this.close(buttons[0].id);
-
-        if (logging)
-            console.log(`dialog - key ${button.id}`);
-
+        close(buttons[0].id, true);
         return;
     }
 
@@ -268,36 +261,40 @@ document.on("keyup", function(event, button) {
         return button.id;
     })
 
-    if (ids.includes("cancel")) {
-        Window.this.close("cancel");
-
-        if (logging)
-            console.log(`dialog - key cancel`);
-    }
+    if (ids.includes("cancel"))
+        close("cancel", true);
     else
-    if (ids.includes("no")) {
-        Window.this.close("no");
-
-        if (logging)
-            console.log(`dialog - key no`);
-    }
+    if (ids.includes("no"))
+        close("no", true);
     else
-    if (ids.includes("ok")) {
-        Window.this.close("ok");
-
-        if (logging)
-            console.log(`dialog - key ok`);
-    }
+    if (ids.includes("ok"))
+        close("ok", true);
     else
-    if (ids.includes("yes")) {
-        Window.this.close("yes");
-
-        if (logging)
-            console.log(`dialog - key yes`);
-    }
+    if (ids.includes("yes"))
+        close("yes", true);
 });
 
+/**
+ * Close window
+ * @param string id button id
+ * @param bool key pressed (if not click)
+ * @return void
+ */
+function close(id, key)
+{
+    // close modal window and return button id
+    if (params.options && params.options.logging)
+        if (key)
+            console.log(`dialog - key "${id}"`);
+        else
+            console.log(`dialog - clicked "${id}"`);
+
+    Window.this.close(id);
+}
+
+// close window
 document.on("close", function(a) {
+    // re-enable button
     if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
         params.options.disable.disabled = false;
 });
