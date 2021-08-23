@@ -121,7 +121,8 @@ document.on("ready", function() {
 
         // log message
         if (params.options && params.options.logging)
-            console.log(`dialog - message - "${params.message}"`);
+            // get rid of message new lines for logging
+            console.log(`dialog - message - "${params.message.replaceAll("\r\n", " ")}"`);
 
         // call callback if set
         if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
