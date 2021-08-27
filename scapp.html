@@ -133,7 +133,7 @@ function dialogCallback(root)
     console.debug("dialog callback reached");
 
     // get all dialog elements to translate
-    root.$$("[data-i18n]").map(function(element) {
+    root.$$("[data-i18n]").forEach(function(element) {
         element.innerText += " (i18n)";
     });
 }

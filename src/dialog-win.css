@@ -118,7 +118,7 @@ main {
     margin: 0;
 
     width: *;
-    height:  max-content;
+    height: max-content;
 
     padding: 15dip 10dip;
 }
@@ -130,15 +130,15 @@ main > i {
     font-size: 35dip;
 }
 
-i#info {
+main > i#info {
     color: blue;
 }
 
-i#error {
+main > i#error {
     color: red;
 }
 
-i#warning {
+main > i#warning {
     color: orange;
 }
 
