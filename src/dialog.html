@@ -209,7 +209,7 @@ function position()
     Window.this.move(left, top, ww, wh);
 }
 
-// button click event
+// on button click event
 document.on("click", "button", function(event, button) {
     const link = button.getAttribute("href");
 
@@ -230,7 +230,7 @@ document.on("click", "button", function(event, button) {
     close(button.id, false);
 });
 
-// escape key press
+// on escape key press
 document.on("keyup", function(event, button) {
     if (event.code !== "KeyESCAPE")
         return;
@@ -265,7 +265,7 @@ document.on("keyup", function(event, button) {
 });
 
 /**
- * Close window
+ * Close dialog window
  * @param string id button id
  * @param bool key pressed (if not click)
  * @return void
@@ -282,8 +282,8 @@ function close(id, key)
     Window.this.close(id);
 }
 
-// close window
-document.on("close", function(a) {
+// on close dialog window
+document.on("close", function() {
     // re-enable button
     if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
         params.options.disable.disabled = false;
