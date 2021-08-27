@@ -35,8 +35,8 @@ export class dialogs
             //alignment: 5,
             // temporary fix for 4.4.8.7 division by zero
             // https://sciter.com/forums/topic/div-by-zero-on-window-creation/
-            width: 400,
-            height: 170,
+            //width: 400,
+            //height: 170,
             parameters: {
                 type: type,
                 message: message,
