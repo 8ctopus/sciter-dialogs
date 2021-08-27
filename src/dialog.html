@@ -20,7 +20,8 @@ console = Window.this.parent.document.globalThis.console;
 // hidden
 //console.debug(`before ready window state - ${Window.this.state}`);
 
-document.on("ready", function() {
+// https://sciter.com/forums/topic/modal-window-window-state/#post-73646
+document.ready = function() {
     try {
         // shown
         //console.debug(`after ready window state - ${Window.this.state}`);
@@ -128,21 +129,18 @@ document.on("ready", function() {
         if (typeof params.options !== "undefined" && typeof params.options.callback === "function")
             params.options.callback(document);
 
-        // position dialog in parent window
-        position();
-
         if (params.options && params.options.debugging)
             console.debug(`total time ${new Date() - timer}ms`);
     }
     catch (e) {
         console.error(`dialog - exception - ${e.message} - ${e.stack}`);
     }
-    finally {
-        // show dialog
-        Window.this.state = Window.WINDOW_SHOWN;
-    }
-});
+}
 
+document.on("ready", function() {
+    // position dialog in parent window
+    position();
+});
 
 /**
  * Add buttons
@@ -199,28 +197,16 @@ function position()
     // get parent window dimensions
     const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
 
-    //console.debug(document.style["width"] + " " + document.style["height"]);
+    const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
 
-    // get device dpi setting
-    const dpi = utils.devicePixels();
-
-    // convert width and minimum height in ppx
-    const width = utils.dip_ppx(document.style["width"], dpi);
-
-    const min_height = utils.dip_ppx(document.style["min-height"], dpi);
-
-    // get body height in ppx
-    let height = document.$("body").state.box("height", "border", true);
-
-    // make sure height not less than min height
-    height = (height < min_height) ? min_height : height;
+    console.log(`${ww} ${wh}`);
 
     // calculate parent window center
-    const left = sx + (sw - width) / 2;
-    const top  = sy + (sh - height) / 2;
+    const left = sx + (sw - ww) / 2;
+    const top  = sy + (sh - wh) / 2;
 
     // move window
-    Window.this.move(left, top, width, height);
+    Window.this.move(left, top, ww, wh);
 }
 
 // button click event
