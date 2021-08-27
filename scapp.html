@@ -105,7 +105,7 @@ document.on("click", "button", function(event, element) {
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
                 ],
-                disable: document.$("body"),
+                disable: document.$("body"), // causes warning dialog height issue
                 openLink: openLinkOverride,
             });
             break;
