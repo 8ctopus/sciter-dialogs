@@ -13,8 +13,8 @@ import * as utils from "../vendor/8ctopus/sciter-utils/src/utils.js";
 // get parent window console
 console = Window.this.parent.document.globalThis.console;
 
-//console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`); 1
-//console.debug(`Window.WINDOW_HIDDEN - ${Window.WINDOW_HIDDEN}`); 4
+//console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`); // 1
+//console.debug(`Window.WINDOW_HIDDEN - ${Window.WINDOW_HIDDEN}`); // 4
 //console.line();
 
 // hidden
@@ -23,7 +23,7 @@ console = Window.this.parent.document.globalThis.console;
 // https://sciter.com/forums/topic/modal-window-window-state/#post-73646
 document.ready = function() {
     try {
-        // shown
+        // hidden
         //console.debug(`after ready window state - ${Window.this.state}`);
         const timer = new Date();
 
@@ -197,9 +197,10 @@ function position()
     // get parent window dimensions
     const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
 
+    // get window dimensions
     const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
 
-    console.log(`${ww} ${wh}`);
+    //console.log(`${ww} ${wh}`);
 
     // calculate parent window center
     const left = sx + (sw - ww) / 2;
