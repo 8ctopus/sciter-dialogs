@@ -69,5 +69,5 @@ function dialogCallback(root)
 
 # known issues
 
-- dialog is not modal
-- make window show only when ready
+- show dialog window in the right spot immediately
+- in some cases dialog is not modal
