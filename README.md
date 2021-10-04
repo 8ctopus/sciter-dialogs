@@ -69,5 +69,4 @@ function dialogCallback(root)
 
 # known issues
 
-- show dialog window in the right spot immediately
 - in some cases dialog is not modal
