@@ -32,7 +32,7 @@ export class dialogs
             //type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialog.html",
             state: Window.WINDOW_HIDDEN,
-            //alignment: 5,
+            alignment: -5,
             parameters: {
                 type: type,
                 message: message,

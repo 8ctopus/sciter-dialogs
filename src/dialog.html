@@ -137,11 +137,6 @@ document.ready = function() {
     }
 }
 
-document.on("ready", function() {
-    // position dialog in parent window
-    position();
-});
-
 /**
  * Add buttons
  * @param string buttons separated by space
@@ -186,28 +181,6 @@ function addButtons(buttons)
 function capitalizeFirstLetter(str)
 {
     return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-/**
- * Position dialog in parent window
- * @return void
- */
-function position()
-{
-    // get parent window dimensions
-    const [sx, sy, sw, sh] = Window.this.parent.box("rectw", "border", "screen");
-
-    // get window dimensions
-    const [wx, wy, ww, wh] = Window.this.box("rectw", "border", "screen");
-
-    //console.log(`${ww} ${wh}`);
-
-    // calculate parent window center
-    const left = sx + (sw - ww) / 2;
-    const top  = sy + (sh - wh) / 2;
-
-    // move window
-    Window.this.move(left, top, ww, wh);
 }
 
 // on button click event
