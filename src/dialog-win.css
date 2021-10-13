@@ -46,8 +46,6 @@ body {
 }
 
 header {
-    display: block;
-
     flow: horizontal;
 
     width: *;
@@ -156,10 +154,11 @@ footer {
     width: *;
     height: min-content;
 
-    padding: 10dip;
     border-spacing: 15dip;
-
     border-top: 1px solid rgb(223,223,223);
+
+    padding: 10dip;
+
     background: rgb(240,240,240);
 }
 
@@ -170,8 +169,9 @@ footer > button {
     width: min-content;
     height: 1.8em;
 
-    text-align: center;
     padding: 0 15dip;
+
+    text-align: center;
 }
 
 footer > button:first-child {
