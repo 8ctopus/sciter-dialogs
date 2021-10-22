@@ -188,7 +188,8 @@ footer > button:last-child {
     border-width: length(button-border-width);
     border-radius: length(button-border-radius);
     border-style: solid;
-    border-color: color(button-hover-border);
+    //border-color: color(button-hover-border);
+    box-shadow: 0 0 5dip #52B2DB;
 }
 
 @mixin STD-BUTTON-ACTIVE {
@@ -196,7 +197,7 @@ footer > button:last-child {
     border-width: length(button-border-width);
     border-radius: length(button-border-radius);
     border-style: solid;
-    border-color: color(button-active-border);
+    //border-color: color(button-active-border);
 }
 
 @mixin STD-BUTTON-FOCUS {
@@ -204,7 +205,8 @@ footer > button:last-child {
     border-width: length(button-border-width);
     border-radius: length(button-border-radius);
     border-style: solid;
-    border-color: color(button-focus-border);
+    //border-color: color(button-focus-border);
+    box-shadow: 0 0 5dip #60CFFF;
 }
 
 @mixin STD-BUTTON-DISABLED {
