@@ -90,7 +90,7 @@ document.on("click", "button", function(event, element) {
 
             result = dialogs.show("input", "Please enter user name", "ok cancel", options);
 
-            if (result === "ok")
+            if (result && result === "ok")
                 console.log("input value:", options.input.value);
 
             break;
@@ -134,8 +134,8 @@ document.on("click", "button", function(event, element) {
             break;
     }
 
-    if (typeof result !== "undefined")
-        console.log(`return value: ${result}`);
+    if (result)
+        console.log("return value:", result);
 });
 
 /**
