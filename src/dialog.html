@@ -227,6 +227,14 @@ document.on("click", "button", function(event, button) {
     close(button.id, false);
 });
 
+document.on("click", "window-button", function(event, button) {
+    // stop window from closing
+    event.stopPropagation();
+
+    // closing the window using the close button is considered like pressing escape key
+    document.dispatchEvent(new Event("keyup", {code: "KeyESCAPE"}));
+});
+
 // on escape key press
 document.on("keyup", function(event, element) {
     if (["KeyESCAPE", "KeyRETURN"].indexOf(event.code) === -1)
