@@ -98,6 +98,11 @@ document.ready = function() {
                 icon  = "fas fa-question-circle";
                 break;
 
+            case "input":
+                title = "Enter";
+                icon = "fas fa-question-circle";
+                break;
+
             default:
                 console.error(`dialog - unknown type - ${params.type}`);
         }
@@ -116,6 +121,22 @@ document.ready = function() {
 
         // set message
         document.$("#message").innerText = params.message;
+
+        // set input
+        if (params.type === "input") {
+            // hide main icon
+            document.$("main > i").style.display = "none";
+
+            // set input content
+            if (params.options.input.value)
+                document.$("input").value = params.options.input.value;
+
+            if (params.options.input.placeholder)
+                document.$("input").placeholder = params.options.input.placeholder;
+
+            // show input
+            document.$("input").style.display = "block";
+        }
 
         // add buttons
         addButtons(params.buttons);
@@ -246,12 +267,21 @@ document.on("keyup", function(event, button) {
  */
 function close(id, key)
 {
+    // save input value
+    if (params.type === "input")
+        params.options.input.value = document.$("input").value;
+
     // close modal window and return button id
-    if (params.options && params.options.logging)
+    if (params.options && params.options.logging) {
         if (key)
             console.log(`dialog - key "${id}"`);
         else
             console.log(`dialog - clicked "${id}"`);
+
+        // log input value
+        if (params.type === "input")
+            console.log(params.options.input.value)
+    }
 
     Window.this.close(id);
 }
@@ -273,7 +303,10 @@ document.on("close", function() {
     </header>
     <main>
         <i class="" />
-        <span #message />
+        <div .vbox>
+            <span #message />
+            <input type="text" value="" placeholder="" data-i18n />
+        </div>
     </main>
     <footer />
 </body>

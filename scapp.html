@@ -1,6 +1,6 @@
 <html
     window-resizable="true"
-    window-width="700dip"
+    window-width="750dip"
     window-height="400dip"
 >
 <head>
@@ -80,6 +80,21 @@ document.on("click", "button", function(event, element) {
             result = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
             break;
 
+        case "input":
+            let options = {
+                input: {
+                    value: "user1",
+                    placeholder: "Enter the text",
+                }
+            };
+
+            result = dialogs.show("input", "Please enter user name", "ok cancel", options);
+
+            if (result === "ok")
+                console.log("input value:", options.input.value);
+
+            break;
+
         case "callback":
             result = dialogs.show("info", "The callback can be used to translate the dialog elements.", "ok", {
                 callback: dialogCallback
@@ -150,6 +165,7 @@ function openLinkOverride(link)
     <button #error>error</button>
     <button #warning>warning</button>
     <button #question>question</button>
+    <button #input>input</button>
     <button #callback>callback</button>
     <button #css>custom css</button>
     <button #options>options for all</button>

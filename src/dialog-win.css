@@ -141,11 +141,21 @@ main > i#warning {
     color: orange;
 }
 
-main > span#message {
+main > div.vbox {
+    flow: vertical;
+}
+
+main > div.vbox > span#message {
     display: block;
 
     vertical-align: top;
     white-space: pre-wrap;
+}
+
+main > div.vbox > input {
+    display: none;
+
+    margin-top: 1em;
 }
 
 footer {
