@@ -226,9 +226,11 @@ document.on("click", "button", function(event, button) {
 });
 
 // on escape key press
-document.on("keyup", function(event, button) {
-    if (event.code !== "KeyESCAPE")
+document.on("keyup", function(event, element) {
+    if (["KeyESCAPE", "KeyRETURN"].indexOf(event.code) === -1)
         return;
+
+    console.log(event.code);
 
     const logging = params.options && params.options.logging;
 
@@ -246,17 +248,32 @@ document.on("keyup", function(event, button) {
         return button.id;
     })
 
-    if (ids.includes("cancel"))
-        close("cancel", true);
-    else
-    if (ids.includes("no"))
-        close("no", true);
-    else
-    if (ids.includes("ok"))
-        close("ok", true);
-    else
-    if (ids.includes("yes"))
-        close("yes", true);
+    if (event.code === "KeyESCAPE") {
+        if (ids.includes("cancel"))
+            close("cancel", true);
+        else
+        if (ids.includes("no"))
+            close("no", true);
+        else
+        if (ids.includes("ok"))
+            close("ok", true);
+        else
+        if (ids.includes("yes"))
+            close("yes", true);
+    }
+    else {
+        if (ids.includes("ok"))
+            close("ok", true);
+        else
+        if (ids.includes("yes"))
+            close("yes", true);
+        else
+        if (ids.includes("cancel"))
+            close("cancel", true);
+        else
+        if (ids.includes("no"))
+            close("no", true);
+    }
 });
 
 /**
@@ -288,7 +305,7 @@ function close(id, key)
 
 // on close dialog window
 document.on("close", function() {
-    // re-enable button
+    // re-enable buttons on main interface
     if (typeof params.options !== "undefined" && typeof params.options.disable !== "undefined")
         params.options.disable.disabled = false;
 });
