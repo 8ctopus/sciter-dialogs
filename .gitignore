@@ -2,3 +2,5 @@
 /vendor/
 
 /*.sublime-workspace
+
+/*.log
