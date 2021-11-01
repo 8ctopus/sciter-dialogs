@@ -141,6 +141,14 @@ document.ready = function() {
         // add buttons
         addButtons(params.buttons);
 
+        if (params.type !== "input") {
+            // set tab focus on the first button
+            document.$("footer > button").state.tabfocus = true;
+
+            // set focus on the first button
+            document.$("footer > button").state.focus = true;
+        }
+
         // log message
         if (params.options && params.options.logging)
             // get rid of message new lines for logging
@@ -186,12 +194,6 @@ function addButtons(buttons)
 
     // add buttons to footer
     document.$("footer").patch(buttons2);
-
-    // set tab focus on the first button
-    document.$("footer > button").state.tabfocus = true;
-
-    // set focus on the first button
-    document.$("footer > button").state.focus = true;
 }
 
 /**
