@@ -47,13 +47,13 @@ document.on("ready", function() {
     utils.addReloadWindow();
 
     // close window on escape
-    utils.closeWindowOnEscape();
+    utils.closeWindowOnEscape(Window.this);
 
     // center window on screen
-    utils.centerWindow("screen");
+    utils.centerWindow(Window.this, "screen");
 
     // bring window to front
-    utils.windowToFront();
+    utils.windowToFront(Window.this);
 
     // log sciter version
     console.debug(utils.sciterInfo());
