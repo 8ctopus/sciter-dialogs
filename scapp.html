@@ -39,7 +39,7 @@ logger.attach();
 // capture unhandled exceptions
 logger.capture();
 
-document.on("ready", function() {
+document.ready = function() {
     // subscribe to logger messages
     logger.plaintext(document.$("plaintext#logger"));
 
@@ -57,7 +57,7 @@ document.on("ready", function() {
 
     // log sciter version
     console.debug(utils.sciterInfo());
-});
+}
 
 // set dialog buttons on click event
 document.on("click", "button", function(event, element) {
