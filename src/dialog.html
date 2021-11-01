@@ -133,7 +133,7 @@ document.ready = function() {
             console.debug(`total time ${new Date() - timer}ms`);
     }
     catch (e) {
-        console.error(`dialog - exception - ${e.message} - ${e.stack}`);
+        console.error("dialog - exception", e);
     }
 }
 
