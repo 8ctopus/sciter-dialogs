@@ -14,10 +14,10 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 ## demo
 
 - git clone the repository
-- on Mac only `chmod +x install.sh scapp.sh`
-- run `install.bat` on Windows or `./install.sh` on Mac to download the latest sciter binaries and the sciter package manager
+- on Linux/Mac `chmod +x install.sh scapp.sh`
+- run `install.bat` (Win) or `./install.sh` (Linux/Mac) to download the latest sciter binaries and the sciter package manager
 - install packages `php bin/spm.phar install`
-- run `scapp.bat` or `./scapp.sh`
+- run `scapp.bat` (Win) or `./scapp.sh` (Linux/Mac)
 
 ## install
 
