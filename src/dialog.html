@@ -126,12 +126,23 @@ document.ready = function() {
             // hide main icon
             document.$("main > i").style.display = "none";
 
-            // set input content
-            if (params.options.input.value)
-                document.$("input").value = params.options.input.value;
+            if (!params.options.input) {
+                // create input
+                params.options.input = {
+                    value: "",
+                    placeholder: "",
+                };
 
-            if (params.options.input.placeholder)
-                document.$("input").placeholder = params.options.input.placeholder;
+                console.debug(params);
+            }
+            else {
+                // set input content
+                if (params.options.input.value)
+                    document.$("input").value = params.options.input.value;
+
+                if (params.options.input.placeholder)
+                    document.$("input").placeholder = params.options.input.placeholder;
+            }
 
             // show input
             document.$("input").style.display = "block";
