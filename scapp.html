@@ -88,7 +88,7 @@ document.on("click", "button", function(event, element) {
 
             result = dialogs.show("input", "Please enter user name", "ok cancel", options);
 
-            if (result && result === "ok")
+            if (typeof result !== "undefined" && result === "ok")
                 console.log("input value:", options.input.value);
 
             break;
