@@ -83,12 +83,15 @@ document.on("click", "button", function(event, element) {
 
         case "input":
             let options = {
-
+                input: {
+                    value: "user1",
+                    placeholder: "Enter the text",
+                }
             };
 
             result = dialogs.show("input", "Please enter user name", "ok cancel", options);
 
-            if (typeof result !== "undefined" && result === "ok")
+            if (result && result === "ok")
                 console.log("input value:", options.input.value);
 
             break;
