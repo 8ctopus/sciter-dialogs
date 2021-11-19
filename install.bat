@@ -13,5 +13,3 @@ cd ..
 
 REM sciter package manager 0.2.2
 curl -LO https://github.com/8ctopus/sciter-package-manager/releases/download/0.2.2/spm.phar
-
-pause

@@ -1,6 +1,7 @@
 # sciter 4.4.8.17bis
 sciterSDK="be2be52df10ebe501f75901df8ef2467ed710d00"
 
+# get os name
 uname="$(uname -s)"
 
 case "${uname}" in
