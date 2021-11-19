@@ -37,7 +37,7 @@ logger.init();
 logger.attach();
 
 // capture unhandled exceptions
-logger.capture();
+logger.capture(unhandledExceptionHandler);
 
 document.ready = function() {
     // subscribe to logger messages
@@ -56,8 +56,10 @@ document.ready = function() {
     utils.centerWindow(Window.this, "screen");
 
     // bring window to front
-    utils.windowToFront(Window.this);
+    //utils.windowToFront(Window.this);
 
+    // bring window to front and set input focus
+    Window.this.activate(true);
 }
 
 // set dialog buttons on click event
@@ -157,6 +159,17 @@ function dialogCallback(root)
 function openLinkOverride(link)
 {
     console.log(`open link override - ${link}`);
+}
+
+/**
+ * Unhandled exception handler
+ * @param  Error|String e
+ * @return void
+ */
+function unhandledExceptionHandler(e)
+{
+    // log exception using exception if it exists, error otherwise
+    typeof console.exception === "function" ? console.exception(e) : console.error(e);
 }
 
 </script>
