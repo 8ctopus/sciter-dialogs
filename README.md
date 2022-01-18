@@ -2,7 +2,7 @@
 
 This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
-![sciter dialogs screenshot](screenshot.png)
+![sciter dialogs screenshot](https://github.com/8ctopus/sciter-dialogs/screenshot.png)
 
 ## features
 
@@ -24,10 +24,18 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
     - On Windows [download](https://nodejs.dev/download/) and run the installer
     - On Linux check the [installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04#option-2-%E2%80%94-installing-node-js-with-apt-using-a-nodesource-ppa)
 
-## install
+## add to your project
 
-- add the `src` dir to your project or use the sciter package manager
-- in `<script type="module">`
+### using npm
+
+- install package `npm install sciter-dialogs`
+
+### copy source
+
+- add the `src` dir to your project
+
+
+- add to `<script type="module">`
 
 ```js
 import {dialogs} from "src/dialogs.js";
