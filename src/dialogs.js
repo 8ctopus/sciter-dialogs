@@ -30,7 +30,7 @@ export class dialogs
         return Window.this.modal({
             parent: Window.this,
             //type: Window.POPUP_WINDOW,
-            url: __DIR__ + "dialog.html",
+            url: __DIR__ + "dialogs.htm",
             state: Window.WINDOW_HIDDEN,
             alignment: -5,
             parameters: {
