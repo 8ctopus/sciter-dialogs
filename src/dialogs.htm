@@ -120,7 +120,7 @@ document.ready = function() {
 
         // set title
         document.$("header > span").textContent = title;
-        document.$("header > span").dataset.i18n = `dialogs:${title}`;
+        document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
 
         // set message
         document.$("#message").textContent = params.message;
