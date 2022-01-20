@@ -29,7 +29,7 @@ document.ready = function() {
 
         //console.debug(url);
 
-        document.head.insertAdjacentHTML('beforeend', `<style src="${url}" />`);
+        document.head.insertAdjacentHTML("beforeend", `<style src="${url}" />`);
 
         // get parameters
         globalThis.params = Window.this.parameters;
@@ -38,9 +38,9 @@ document.ready = function() {
             typeof params.type === "undefined" ||
             typeof params.message === "undefined" ||
             typeof params.buttons === "undefined"
-        ) {
+        )
             console.error("dialog - missing parameters");
-        }
+
 
         if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
             // inject custom css
@@ -51,9 +51,8 @@ document.ready = function() {
             else
                 urls = params.options.css;
 
-            urls.forEach(function(url) {
+            for (const url of urls) 
                 document.head.insertAdjacentHTML('beforeend', `<style src="${url}" />`);
-            });
         }
         else {
             // inject default css
@@ -64,15 +63,14 @@ document.ready = function() {
                 OSX: [
                     //"dialog-osx.css", ONCE IMPLEMENTED
                     "dialog-win.css",
-                ]
+                ],
             };
 
             // pick css for platform
             urls = urls[PLATFORM] || urls["Windows"];
 
-            urls.forEach(function(url) {
+            for (const url of urls) 
                 document.head.insertAdjacentHTML('beforeend', `<style src="${__DIR__ + url}" />`);
-            });
         }
 
         // disable button so it cannot be clicked again while the dialog is shown
@@ -85,22 +83,22 @@ document.ready = function() {
         switch (params.type) {
             case "info":
                 title = "Information";
-                icon  = "fas fa-info-circle";
+                icon = "fas fa-info-circle";
                 break;
 
             case "error":
                 title = "Error";
-                icon  = "fas fa-times-circle";
+                icon = "fas fa-times-circle";
                 break;
 
             case "warning":
                 title = "Warning";
-                icon  = "fas fa-exclamation-circle";
+                icon = "fas fa-exclamation-circle";
                 break;
 
             case "question":
                 title = "Question";
-                icon  = "fas fa-question-circle";
+                icon = "fas fa-question-circle";
                 break;
 
             case "input":
@@ -122,7 +120,7 @@ document.ready = function() {
 
         // set title
         document.$("header > span").innerText = title;
-        document.$("header > span").setAttribute("data-i18n", `dialogs:${title}`);
+        document.$("header > span").dataset.i18n = `dialogs:${title}`;
 
         // set message
         document.$("#message").innerText = params.message;
@@ -175,9 +173,9 @@ document.ready = function() {
             params.options.callback(document);
 
         if (params.options && params.options.debugging)
-            console.debug(`total time ${new Date() - timer}ms`);
+            console.debug(`total time ${Date.now() - timer}ms`);
     }
-    catch (e) {
+    catch (error) {
         console.error("dialog - exception", e);
     }
 }
@@ -187,13 +185,12 @@ document.ready = function() {
  * @param string buttons separated by space
  * @return void
  */
-function addButtons(buttons)
-{
+function addButtons(buttons) {
     const list = buttons.split(" ");
 
-    let buttons2 = list.map(function(str) {
+    const buttons2 = list.map(function(string_) {
         // get button id and link
-        let [full, id, link] = str.match(/([a-z]*)(?:\[(.*)\])?/);
+        let [full, id, link] = string_.match(/([a-z]*)(?:\[(.*)])?/);
 
         // make sure link is not undefined
         link = link ?? "";
@@ -214,19 +211,18 @@ function addButtons(buttons)
 
 /**
  * Capitalize first letter
- * @param string str
- * @return string
+ * @param {string} string_
+ * @returns {string}
  */
-function capitalizeFirstLetter(str)
-{
-    return str.charAt(0).toUpperCase() + str.slice(1);
+function capitalizeFirstLetter(string_) {
+    return string_.charAt(0).toUpperCase() + string_.slice(1);
 }
 
 // on button click event
 document.on("click", "button", function(event, button) {
     const link = button.getAttribute("href");
 
-    if (link.length) {
+    if (link.length > 0) {
         // open link in browser
         if (params.options && params.options.logging)
             console.log(`dialog - open link - ${link}`);
@@ -253,7 +249,7 @@ document.on("click", "window-button", function(event, button) {
 
 // on escape key press
 document.on("keyup", function(event, element) {
-    if (["KeyESCAPE", "KeyRETURN"].indexOf(event.code) === -1)
+    if (!["KeyESCAPE", "KeyRETURN"].includes(event.code))
         return;
 
     const logging = params.options && params.options.logging;
@@ -268,46 +264,44 @@ document.on("keyup", function(event, element) {
     }
 
     // get button ids
-    const ids = buttons.map(function(button) {
+    const ids = new Set(buttons.map(function(button) {
         return button.id;
-    })
+    }));
 
     if (event.code === "KeyESCAPE") {
-        if (ids.includes("cancel"))
+        if (ids.has("cancel"))
             close("cancel", true);
         else
-        if (ids.includes("no"))
+        if (ids.has("no"))
             close("no", true);
         else
-        if (ids.includes("ok"))
+        if (ids.has("ok"))
             close("ok", true);
         else
-        if (ids.includes("yes"))
+        if (ids.has("yes"))
             close("yes", true);
     }
     else {
-        if (ids.includes("ok"))
+        if (ids.has("ok"))
             close("ok", true);
         else
-        if (ids.includes("yes"))
+        if (ids.has("yes"))
             close("yes", true);
         else
-        if (ids.includes("cancel"))
+        if (ids.has("cancel"))
             close("cancel", true);
         else
-        if (ids.includes("no"))
+        if (ids.has("no"))
             close("no", true);
     }
 });
 
 /**
  * Close dialog window
- * @param string id button id
- * @param bool key pressed (if not click)
- * @return void
+ * @param {string} id - button id
+ * @param {boolean} key - pressed (if not click)
  */
-function close(id, key)
-{
+function close(id, key) {
     // save input value
     if (params.type === "input")
         params.options.input.value = document.$("input").value;
@@ -321,7 +315,7 @@ function close(id, key)
 
         // log input value
         if (params.type === "input")
-            console.log(params.options.input.value)
+            console.log(params.options.input.value);
     }
 
     Window.this.close(id);
