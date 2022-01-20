@@ -3,7 +3,6 @@
     window-state="hidden"
 >
 <head>
-<style src="../node_modules/sciter-fontawesome/src/fontawesome.css" />
 <script type="module">
 
 import {launch, PLATFORM} from "@env";
@@ -24,6 +23,13 @@ document.ready = function() {
         // hidden
         //console.debug(`after ready window state - ${Window.this.state}`);
         const timer = new Date();
+
+        // add fontawesome css
+        const url = __DIR__.includes("node_modules") ? "../../sciter-fontawesome/src/fontawesome.css" : "../../sciter-fontawesome/src/fontawesome.css";
+
+        //console.debug(url);
+
+        document.head.insertAdjacentHTML('beforeend', `<style src="${url}" />`);
 
         // get parameters
         globalThis.params = Window.this.parameters;
