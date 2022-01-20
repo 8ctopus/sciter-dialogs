@@ -28,7 +28,7 @@ plaintext#logger {
 import Logger from "node_modules/sciter-logger/src/logger.js";
 import * as Utils from "node_modules/sciter-utils/src/utils.js";
 
-import {dialogs} from "src/dialogs.js";
+import Dialogs from "src/dialogs.js";
 
 // initialize logger
 Logger.init();
@@ -65,44 +65,45 @@ document.on("click", "button", function(event, element) {
 
     switch (element.id) {
         case "info":
-            result = dialogs.show("info", "Widget update successful.", "ok");
+            result = Dialogs.show("info", "Widget update successful.", "ok");
             break;
 
         case "error":
-            result = dialogs.show("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
+            result = Dialogs.show("error", "Widget failed with error 18.", "ok help[https://duckduckgo.com]");
             break;
 
         case "warning":
-            result = dialogs.show("warning", "Widget could not be updated.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "ok info[https://yandex.ru]");
+            result = Dialogs.show("warning", "Widget could not be updated.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "ok info[https://yandex.ru]");
             break;
 
         case "question":
-            result = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
+            result = Dialogs.show("question", "Do you want to update widget?", "yes no cancel");
             break;
 
-        case "input":
-            let options = {
+        case "input": {
+            const options = {
                 input: {
                     value: "user1",
                     placeholder: "Enter the text",
-                }
+                },
             };
 
-            result = dialogs.show("input", "Please enter user name", "ok cancel", options);
+            result = Dialogs.show("input", "Please enter user name", "ok cancel", options);
 
             if (result && result === "ok")
                 console.log("input value:", options.input.value);
 
             break;
+        }
 
         case "callback":
-            result = dialogs.show("info", "The callback can be used to translate the dialog elements.", "ok", {
-                callback: dialogCallback
+            result = Dialogs.show("info", "The callback can be used to translate the dialog elements.", "ok", {
+                callback: dialogCallback,
             });
             break;
 
         case "css":
-            result = dialogs.show("info", "Widget update successful.", "ok", {
+            result = Dialogs.show("info", "Widget update successful.", "ok", {
                 css: [
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
@@ -112,7 +113,7 @@ document.on("click", "button", function(event, element) {
 
         case "options":
             // options that apply to all dialogs
-            dialogs.setOptions({
+            Dialogs.setOptions({
                 debugging: true,
                 logging: true,
                 callback: dialogCallback,
@@ -120,13 +121,14 @@ document.on("click", "button", function(event, element) {
                     __DIR__ + "src/dialog-win.css",
                     __DIR__ + "css/test.css",
                 ],
-                disable: document.$("body"), // causes warning dialog height issue
+                // causes warning dialog height issue
+                disable: document.$("body"),
                 openLink: openLinkOverride,
             });
             break;
 
         case "reset":
-            dialogs.setOptions({});
+            Dialogs.setOptions({});
             break;
 
         default:
@@ -140,21 +142,17 @@ document.on("click", "button", function(event, element) {
 
 /**
  * Dialog callback
- * @param DOMElement root
- * @return void
+ * @param {Element} root
  */
-function dialogCallback(root)
-{
+function dialogCallback(root) {
     console.debug("dialog callback reached");
 
     // get all dialog elements to translate
-    root.$$("[data-i18n]").forEach(function(element) {
-        element.innerText += " (i18n)";
-    });
+    for (const element of root.$$("[data-i18n]"))
+        element.textContent += " (i18n)";
 }
 
-function openLinkOverride(link)
-{
+function openLinkOverride(link) {
     console.log(`open link override - ${link}`);
 }
 

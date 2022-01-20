@@ -1,26 +1,23 @@
-export class dialogs
-{
+export default class Dialogs {
     static #options = [];
 
     /**
      * Set options
-     * @param object options
+     * @param {object} options
      */
-    static setOptions(options)
-    {
+    static setOptions(options) {
         this.#options = options;
     }
 
     /**
      * Show modal dialog
-     * @param  string type
-     * @param  string message
-     * @param  string buttons
-     * @param  object (optional) options
-     * @return string result
+     * @param {string} type
+     * @param {string} message
+     * @param {string} buttons
+     * @param {object} options - (optional)
+     * @returns {string} result
      */
-    static show(type, message, buttons, options)
-    {
+    static show(type, message, buttons, options) {
         // merge options
         options = {
             ...this.#options,
@@ -38,7 +35,7 @@ export class dialogs
                 message: message,
                 buttons: buttons,
                 options: options,
-            }
+            },
         });
     }
 }

@@ -38,15 +38,15 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 - add to `<script type="module">`
 
 ```js
-import {dialogs} from "src/dialogs.js";
+import Dialogs from "src/dialogs.js";
 
-const value = dialogs.show("question", "Do you want to update widget?", "yes no cancel");
+const value = Dialogs.show("question", "Do you want to update widget?", "yes no cancel");
 ```
 
 ### css skinning
 
 ```js
-dialogs.setOptions({
+Dialogs.setOptions({
     css: [
         __DIR__ + "src/dialog-win.css",
         __DIR__ + "css/test.css",
@@ -57,7 +57,7 @@ dialogs.setOptions({
 ### translation callback
 
 ```js
-dialogs.setOptions({
+Dialogs.setOptions({
     callback: dialogCallback,
 });
 
@@ -70,7 +70,7 @@ function dialogCallback(root)
 {
     // get all dialog elements to translate
     root.$$("[data-i18n]").map(function(element) {
-        element.innerHTML += " (i18n)";
+        element.textContent += " (i18n)";
     });
 }
 ```
