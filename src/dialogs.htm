@@ -51,8 +51,8 @@ document.ready = function() {
             else
                 urls = params.options.css;
 
-            for (const url of urls) 
-                document.head.insertAdjacentHTML('beforeend', `<style src="${url}" />`);
+            for (const url of urls)
+                document.head.insertAdjacentHTML("beforeend", `<style src="${url}" />`);
         }
         else {
             // inject default css
@@ -69,8 +69,8 @@ document.ready = function() {
             // pick css for platform
             urls = urls[PLATFORM] || urls["Windows"];
 
-            for (const url of urls) 
-                document.head.insertAdjacentHTML('beforeend', `<style src="${__DIR__ + url}" />`);
+            for (const url of urls)
+                document.head.insertAdjacentHTML("beforeend", `<style src="${__DIR__ + url}" />`);
         }
 
         // disable button so it cannot be clicked again while the dialog is shown
@@ -119,11 +119,11 @@ document.ready = function() {
         document.$("main > i").id = params.type;
 
         // set title
-        document.$("header > span").innerText = title;
+        document.$("header > span").textContent = title;
         document.$("header > span").dataset.i18n = `dialogs:${title}`;
 
         // set message
-        document.$("#message").innerText = params.message;
+        document.$("#message").textContent = params.message;
 
         // set input
         if (params.type === "input") {
@@ -176,21 +176,20 @@ document.ready = function() {
             console.debug(`total time ${Date.now() - timer}ms`);
     }
     catch (error) {
-        console.error("dialog - exception", e);
+        console.error("dialog - exception", error);
     }
-}
+};
 
 /**
  * Add buttons
- * @param string buttons separated by space
- * @return void
+ * @param {string} buttons - separated by space
  */
 function addButtons(buttons) {
     const list = buttons.split(" ");
 
     const buttons2 = list.map(function(string_) {
         // get button id and link
-        let [full, id, link] = string_.match(/([a-z]*)(?:\[(.*)])?/);
+        let [, id, link] = string_.match(/([a-z]*)(?:\[(.*)])?/);
 
         // make sure link is not undefined
         link = link ?? "";
@@ -251,8 +250,6 @@ document.on("click", "window-button", function(event, button) {
 document.on("keyup", function(event, element) {
     if (!["KeyESCAPE", "KeyRETURN"].includes(event.code))
         return;
-
-    const logging = params.options && params.options.logging;
 
     // get buttons
     const buttons = document.$$("button");
