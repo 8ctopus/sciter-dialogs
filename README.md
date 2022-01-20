@@ -2,7 +2,7 @@
 
 This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
-![sciter dialogs screenshot](https://github.com/8ctopus/sciter-dialogs/screenshot.png)
+![sciter dialogs screenshot](https://github.com/8ctopus/sciter-dialogs/raw/master/screenshot.png)
 
 ## features
 
