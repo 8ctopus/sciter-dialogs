@@ -37,7 +37,7 @@ Logger.init();
 Logger.attach();
 
 // capture unhandled exceptions
-Logger.capture(unhandledExceptionHandler);
+Logger.capture();
 
 document.on("ready", function() {
     // subscribe to logger messages
@@ -156,17 +156,6 @@ function dialogCallback(root)
 function openLinkOverride(link)
 {
     console.log(`open link override - ${link}`);
-}
-
-/**
- * Unhandled exception handler
- * @param  Error|String e
- * @return void
- */
-function unhandledExceptionHandler(e)
-{
-    // log exception using exception if it exists, error otherwise
-    typeof console.exception === "function" ? console.exception(e) : console.error(e);
 }
 
 </script>
