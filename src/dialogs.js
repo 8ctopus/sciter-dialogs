@@ -31,10 +31,10 @@ export default class Dialogs {
             state: Window.WINDOW_HIDDEN,
             alignment: -5,
             parameters: {
-                type: type,
-                message: message,
-                buttons: buttons,
-                options: options,
+                type,
+                message,
+                buttons,
+                options,
             },
         });
     }

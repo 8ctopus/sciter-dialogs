@@ -10,6 +10,8 @@ import {launch, PLATFORM} from "@env";
 // get parent window console
 console = Window.this.parent.document.globalThis.console;
 
+let params;
+
 //console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`); // 1
 //console.debug(`Window.WINDOW_HIDDEN - ${Window.WINDOW_HIDDEN}`); // 4
 //console.line();
@@ -32,15 +34,14 @@ document.ready = function() {
         document.head.insertAdjacentHTML("beforeend", `<style src="${url}" />`);
 
         // get parameters
-        globalThis.params = Window.this.parameters;
+        params = Window.this.parameters;
 
-        if (typeof params === "undefined" ||
-            typeof params.type === "undefined" ||
-            typeof params.message === "undefined" ||
-            typeof params.buttons === "undefined"
+        if (typeof params === "undefined"
+            || typeof params.type === "undefined"
+            || typeof params.message === "undefined"
+            || typeof params.buttons === "undefined"
         )
             console.error("dialog - missing parameters");
-
 
         if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
             // inject custom css
@@ -67,7 +68,7 @@ document.ready = function() {
             };
 
             // pick css for platform
-            urls = urls[PLATFORM] || urls["Windows"];
+            urls = urls[PLATFORM] || urls.Windows;
 
             for (const url of urls)
                 document.head.insertAdjacentHTML("beforeend", `<style src="${__DIR__ + url}" />`);
@@ -238,7 +239,7 @@ document.on("click", "button", function(event, button) {
     close(button.id, false);
 });
 
-document.on("click", "window-button", function(event, button) {
+document.on("click", "window-button", function(event) {
     // stop window from closing
     event.stopPropagation();
 
@@ -247,7 +248,7 @@ document.on("click", "window-button", function(event, button) {
 });
 
 // on escape key press
-document.on("keyup", function(event, element) {
+document.on("keyup", function(event) {
     if (!["KeyESCAPE", "KeyRETURN"].includes(event.code))
         return;
 
@@ -278,19 +279,17 @@ document.on("keyup", function(event, element) {
         if (ids.has("yes"))
             close("yes", true);
     }
-    else {
-        if (ids.has("ok"))
-            close("ok", true);
-        else
-        if (ids.has("yes"))
-            close("yes", true);
-        else
-        if (ids.has("cancel"))
-            close("cancel", true);
-        else
-        if (ids.has("no"))
-            close("no", true);
-    }
+    else if (ids.has("ok"))
+        close("ok", true);
+    else
+    if (ids.has("yes"))
+        close("yes", true);
+    else
+    if (ids.has("cancel"))
+        close("cancel", true);
+    else
+    if (ids.has("no"))
+        close("no", true);
 });
 
 /**
