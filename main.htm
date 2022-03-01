@@ -43,20 +43,8 @@ document.on("ready", function() {
     // subscribe to logger messages
     Logger.plaintext(document.$("plaintext#logger"));
 
-    // log sciter version
-    console.debug(Utils.sciterInfo());
-
-    // add support for F5 reload
-    Utils.addReloadWindow();
-
     // close window on escape key press
     Utils.closeWindowOnEscape(Window.this);
-
-    // center window on screen
-    Utils.centerWindow(Window.this, "screen");
-
-    // bring window to front and set input focus
-    Window.this.activate(true);
 });
 
 // set dialog buttons on click event
