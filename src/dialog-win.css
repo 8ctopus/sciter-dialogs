@@ -4,6 +4,7 @@ html {
     width: 400dip;
     height: min-content;
     min-height: 200dip;
+    overflow: none;
 
     // button
     var(button-text): rgb(0, 0, 0);
