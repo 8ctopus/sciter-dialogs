@@ -11,6 +11,8 @@ import {launch, PLATFORM} from "@env";
 console = Window.this.parent.document.globalThis.console;
 
 let params;
+let dialogButtons = [];
+let defaultButton;
 
 //console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`); // 1
 //console.debug(`Window.WINDOW_HIDDEN - ${Window.WINDOW_HIDDEN}`); // 4
@@ -39,8 +41,7 @@ document.ready = function() {
         if (typeof params === "undefined"
             || typeof params.type === "undefined"
             || typeof params.message === "undefined"
-            || typeof params.buttons === "undefined"
-        )
+            || typeof params.buttons === "undefined")
             console.error("dialog - missing parameters");
 
         if (typeof params.options !== "undefined" && typeof params.options.css !== "undefined") {
@@ -156,12 +157,22 @@ document.ready = function() {
         // add buttons
         addButtons(params.buttons);
 
+        // set focus to default button if set
         if (params.type !== "input") {
-            // set tab focus on the first button
-            document.$("footer > button").state.tabfocus = true;
+            let defaultButtonEl;
 
-            // set focus on the first button
-            document.$("footer > button").state.focus = true;
+            // defaultButton if set
+            if (defaultButton)
+                defaultButtonEl = document.$("footer > button#" + defaultButton);
+            else
+                // use first button otherwise
+                defaultButtonEl = document.$("footer > button");
+
+            // set tab focus
+            defaultButtonEl.state.tabfocus = true;
+
+            // set focus
+            defaultButtonEl.state.focus = true;
         }
 
         // log message
@@ -190,10 +201,18 @@ function addButtons(buttons) {
 
     const buttons2 = list.map(function(string_) {
         // get button id and link
-        let [, id, link] = string_.match(/([a-z]*)(?:\[(.*)])?/);
+        const [, mod, id, link] = string_.match(/([\!]*)([a-z]*)(?:\[(.*)])?/);
 
-        // make sure link is not undefined
-        link = link ?? "";
+        if (mod)
+            // check for modifiers
+            for (var i = 0; i < mod.length; i++)
+                switch (mod[i]) {
+                    // default focused button
+                    case "!": defaultButton = id;       break;
+            }
+
+        // add for reuse (avoid DOM iteration + confusion with other buttons added bay "callback")
+        dialogButtons.push(id);
 
         const caption = (id === "ok") ? id.toUpperCase() : capitalizeFirstLetter(id);
 
@@ -201,7 +220,7 @@ function addButtons(buttons) {
 
         // create button JSX
         return (
-            <button id={id} href={link} data-i18n={i18n}>{caption}</button>
+            <button id={id} href={link ?? ""} data-i18n={i18n}>{caption}</button>
         );
     });
 
@@ -244,52 +263,46 @@ document.on("click", "window-button", function(event) {
     event.stopPropagation();
 
     // closing the window using the close button is considered like pressing escape key
-    document.dispatchEvent(new Event("keyup", {code: "KeyESCAPE"}));
+    document.dispatchEvent(new Event("keyup", {code: "Escape"}));
 });
 
 // on escape key press
 document.on("keyup", function(event) {
-    if (!["KeyESCAPE", "KeyRETURN"].includes(event.code))
-        return;
 
-    // get buttons
-    const buttons = document.$$("button");
+    switch (event.code) {
+        case "Escape":
+            // no choice === undefined
+            close(undefined, true);
+            return;
 
-    // if there's a single button, return its id
-    if (buttons.length === 1) {
-        close(buttons[0].id, true);
-        return;
+        case "Enter":
+            // if set return default button on RETURN
+            if (defaultButton){
+                close(defaultButton, true);
+                return;
+            }
+
+            // default behaviour
+            // if there's a single button, return its id
+            if (dialogButtons.length === 1) {
+                close(dialogButtons[0], true);
+                return;
+            }
+
+            if (dialogButtons.indexOf("ok") >= 0)
+                close("ok", true);
+            else
+            if (dialogButtons.indexOf("yes") >= 0)
+                close("yes", true);
+            else
+            if (dialogButtons.indexOf("cancel") >= 0)
+                close("cancel", true);
+            else
+            if (dialogButtons.indexOf("no") >= 0)
+                close("no", true);
+
+            return;
     }
-
-    // get button ids
-    const ids = new Set(buttons.map(function(button) {
-        return button.id;
-    }));
-
-    if (event.code === "KeyESCAPE") {
-        if (ids.has("cancel"))
-            close("cancel", true);
-        else
-        if (ids.has("no"))
-            close("no", true);
-        else
-        if (ids.has("ok"))
-            close("ok", true);
-        else
-        if (ids.has("yes"))
-            close("yes", true);
-    }
-    else if (ids.has("ok"))
-        close("ok", true);
-    else
-    if (ids.has("yes"))
-        close("yes", true);
-    else
-    if (ids.has("cancel"))
-        close("cancel", true);
-    else
-    if (ids.has("no"))
-        close("no", true);
 });
 
 /**
@@ -327,7 +340,7 @@ document.on("close", function() {
 </script>
 </head>
 <body>
-    <header roLe="window-caption">
+    <header role="window-caption">
         <i class="" />
         <span data-i18n />
         <window-button #close role="window-close" />

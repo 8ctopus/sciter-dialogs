@@ -13,7 +13,7 @@ export default class Dialogs {
      * Show modal dialog
      * @param {string} type
      * @param {string} message
-     * @param {string} buttons
+     * @param {string} buttons - e.g. "yes no view" or "yes !no view", default button is first in list or the last prefixed with with "!"
      * @param {object} options - (optional)
      * @returns {string} result
      */
@@ -28,13 +28,14 @@ export default class Dialogs {
             parent: Window.this,
             //type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialogs.htm",
-            state: Window.WINDOW_HIDDEN,
+            // state has no effect Window.this.modal() by design always shows the window
+            /*state: Window.WINDOW_HIDDEN,*/ 
             alignment: -5,
             parameters: {
                 type,
                 message,
                 buttons,
-                options,
+                options
             },
         });
     }
