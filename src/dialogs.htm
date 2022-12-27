@@ -11,7 +11,7 @@ import {launch, PLATFORM} from "@env";
 console = Window.this.parent.document.globalThis.console;
 
 let params;
-let dialogButtons = [];
+const dialogButtons = [];
 let defaultButton;
 
 //console.debug(`Window.WINDOW_SHOWN - ${Window.WINDOW_SHOWN}`); // 1
@@ -55,8 +55,7 @@ document.ready = function() {
 
             for (const url of urls)
                 document.head.insertAdjacentHTML("beforeend", `<style src="${url}" />`);
-        }
-        else {
+        } else {
             // inject default css
             let urls = {
                 Windows: [
@@ -140,8 +139,7 @@ document.ready = function() {
                 };
 
                 console.debug(params);
-            }
-            else {
+            } else {
                 // set input content
                 if (params.options.input.value)
                     document.$("input").value = params.options.input.value;
@@ -159,14 +157,7 @@ document.ready = function() {
 
         // set focus to default button if set
         if (params.type !== "input") {
-            let defaultButtonEl;
-
-            // defaultButton if set
-            if (defaultButton)
-                defaultButtonEl = document.$("footer > button#" + defaultButton);
-            else
-                // use first button otherwise
-                defaultButtonEl = document.$("footer > button");
+            const defaultButtonEl = defaultButton ? document.$("footer > button#" + defaultButton) : document.$("footer > button");
 
             // set tab focus
             defaultButtonEl.state.tabfocus = true;
@@ -186,8 +177,7 @@ document.ready = function() {
 
         if (params.options && params.options.debugging)
             console.debug(`total time ${Date.now() - timer}ms`);
-    }
-    catch (error) {
+    } catch (error) {
         console.error("dialog - exception", error);
     }
 };
@@ -201,15 +191,19 @@ function addButtons(buttons) {
 
     const buttons2 = list.map(function(string_) {
         // get button id and link
-        const [, mod, id, link] = string_.match(/([\!]*)([a-z]*)(?:\[(.*)])?/);
+        const [, mod, id, link] = string_.match(/(!*)([a-z]*)(?:\[(.*)])?/);
 
-        if (mod)
+        if (mod) {
             // check for modifiers
-            for (var i = 0; i < mod.length; i++)
-                switch (mod[i]) {
+            for (const element of mod) {
+                switch (element) {
                     // default focused button
-                    case "!": defaultButton = id;       break;
+                    case "!":
+                        defaultButton = id;
+                        break;
+                }
             }
+        }
 
         // add for reuse (avoid DOM iteration + confusion with other buttons added bay "callback")
         dialogButtons.push(id);
@@ -268,7 +262,6 @@ document.on("click", "window-button", function(event) {
 
 // on escape key press
 document.on("keyup", function(event) {
-
     switch (event.code) {
         case "Escape":
             // no choice === undefined
@@ -277,7 +270,7 @@ document.on("keyup", function(event) {
 
         case "Enter":
             // if set return default button on RETURN
-            if (defaultButton){
+            if (defaultButton) {
                 close(defaultButton, true);
                 return;
             }
@@ -289,19 +282,17 @@ document.on("keyup", function(event) {
                 return;
             }
 
-            if (dialogButtons.indexOf("ok") >= 0)
+            if (dialogButtons.includes("ok"))
                 close("ok", true);
             else
-            if (dialogButtons.indexOf("yes") >= 0)
+            if (dialogButtons.includes("yes"))
                 close("yes", true);
             else
-            if (dialogButtons.indexOf("cancel") >= 0)
+            if (dialogButtons.includes("cancel"))
                 close("cancel", true);
             else
-            if (dialogButtons.indexOf("no") >= 0)
+            if (dialogButtons.includes("no"))
                 close("no", true);
-
-            return;
     }
 });
 

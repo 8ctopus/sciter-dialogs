@@ -29,13 +29,13 @@ export default class Dialogs {
             //type: Window.POPUP_WINDOW,
             url: __DIR__ + "dialogs.htm",
             // state has no effect Window.this.modal() by design always shows the window
-            /*state: Window.WINDOW_HIDDEN,*/ 
+            /*state: Window.WINDOW_HIDDEN,*/
             alignment: -5,
             parameters: {
                 type,
                 message,
                 buttons,
-                options
+                options,
             },
         });
     }
