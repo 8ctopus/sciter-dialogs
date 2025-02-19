@@ -21,7 +21,7 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 ## demo requirements
 
-- A recent version of Node.js `node` (tested with 16 LTS) and its package manager `npm`.
+- A recent version of Node.js `node` (tested with 22 LTS) and its package manager `npm`.
     - On Windows [download](https://nodejs.dev/download/) and run the installer
     - On Linux check the [installation guide](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04#option-2-%E2%80%94-installing-node-js-with-apt-using-a-nodesource-ppa)
 
@@ -35,13 +35,13 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 - add the `src` dir to your project
 
-Add to `<script type="module">`
+### add to `<script type="module">`
 
 ```js
-// npm import
+// if using npm import
 import Dialogs from "node_modules/sciter-dialogs/src/dialogs.js";
 
-// src import
+// if src copied
 import Dialogs from "src/dialogs.js";
 
 const value = Dialogs.show("question", "Do you want to update widget?", "yes no cancel");
