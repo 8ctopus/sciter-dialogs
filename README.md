@@ -27,6 +27,8 @@ This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 ## add to your project
 
+You can either add it to your project using npm or by copying the src directory.
+
 ### using npm
 
 - install package `npm install sciter-dialogs`
