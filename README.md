@@ -1,5 +1,8 @@
 # sciter dialogs
 
+![latest version](https://img.shields.io/npm/v/sciter-dialogs.svg)
+![downloads](https://img.shields.io/npm/dy/sciter-dialogs.svg)
+
 This project implements modal dialogs for [sciter.js](https://sciter.com/).
 
 ![sciter dialogs screenshot](https://github.com/8ctopus/sciter-dialogs/raw/master/screenshot.png)
