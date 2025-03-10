@@ -1,6 +1,6 @@
 {
   "name": "sciter-dialogs",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "This project implements modal dialogs for [sciter.js](https://sciter.com/).",
   "keywords": [
     "sciter.js",
