@@ -1,9 +1,6 @@
 html {
     flow: vertical;
 
-    width: 400dip;
-    height: min-content;
-    min-height: 200dip;
     overflow: none;
 
     // button
@@ -32,8 +29,10 @@ body {
 
     margin: 0;
 
-    width: *;
+    width: 400dip;
+    max-width: 400dip;
     height: min-content;
+    min-height: 200dip;
 
     border: 1dip solid rgb(112,112,112);
 
